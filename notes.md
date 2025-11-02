@@ -1,4 +1,4 @@
-01/11/2025
+#01/11/2025
 
 Curso de Git e GitHub: compartilhando e colaborando em projetos
 
@@ -910,3 +910,489 @@ Baixar e instalar o Git em seu computador;
 Configurar sua conta do Git em seu computador, com os comandos git config --global user.name e git config --global user.email;
 Criar um repositório remoto no GitHub;
 Criar e conectar seu repositório local com o repositório remoto por meio dos comandos git init, git add, git commit, git remote add e git push.
+
+#02/11/2025
+
+@02-Colaborando em projetos
+
+@@01
+Clonando um repositório
+
+Transcrição
+
+Rodrigo: Concluímos a primeira etapa do projeto! Criamos uma conta no GitHub, instalamos o Git localmente no computador, criamos o repositório remoto e o local e fizemos a ligação entre eles. Além disso, configuramos a chave SSH e fizemos as configurações iniciais.
+Importante lembrar que, nos vídeos anteriores mostramos a chave privada e a pública apenas para demonstrar como funcionam. Na prática, você não compartilhará essas informações, pois elas são restritas ao seu computador.
+Agora daremos continuidade. O repositório remoto no GitHub já possui os arquivos, então, compartilhei o projeto com você, Gabi. Assim, você poderá baixar o código e importar no seu VS Code para fazer modificações no projeto.
+
+Gabrielle: Ótimo, Rodrigo! Com o navegador aberto, já consigo acessar e visualizar todos os arquivos do projeto. Agora vamos transferir esse repositório para o meu computador.
+
+Na lateral direita da tela, clicamos no botão verde nomeado "Code". Feito isso, a ferramenta abre opções para trazer o projeto para o computador. Sendo o Download ZIP, abrir o GitHub no Desktop e clonar o repositório.
+
+Nesse caso, qual é a melhor opção, Rodrigo?
+
+Rodrigo: A princípio realizar o Download ZIP poderia ser uma boa opção, pois o GitHub reúne todos os arquivos do repositório, cria o arquivo zip e faz o download para o seu computador. Depois, você pode descompactar no desktop ou em alguma pasta.
+
+Porém, como nesse caso é realizado apenas o download dos arquivos e não uma cópia do repositório com o commit e todo histórico do projeto. Então, vamos escolher a opção de clonar.
+
+Clonando um repositório
+Gabrielle: Na opção de clonar, o GitHub fornece a URL do repositório. Sendo assim, a copiamos e abrimos o explorador de arquivos do computador e acessamos a área de trabalho.
+
+Em seguida, clicamos com o botão direito do mouse e selecionamos "Abrir no terminal". Em seguida, para clonar o repositório, vamos passar o comando git clone seguido da URL que copiamos e apertamos "Enter".
+
+git clone https://github.com/rodrigoalura87/numero-secreto.git
+COPIAR CÓDIGO
+Se voltarmos ao explorador de arquivos, encontramos a pasta do projeto. Ao acessá-la encontramos todos os arquivos do GitHub.
+
+Sabendo disso, abrimos o VS Code. Para acessar a pasta que clonamos, na barra de menu superior, clicamos em "File > Open Folder". Na janela que abre, procuramos pela pasta "numero-secreto" que está na área de trabalho, selecionamos e clicamos em "Selecionar pasta". Assim o VS Code abre o projeto.
+
+Rodrigo: Ótimo! Então, mesmo que esteja na minha conta do GitHub, você consegue baixar o projeto. Isso porque quando criamos o repositório o deixamos como público, ou seja, qualquer pessoa pode acessá-lo do navegador, pode visualizar os arquivos, fazer o download ou cloná-lo.
+
+Gabi, agora você tem o projeto no seu computador e você tem acesso ao código-fonte. Será que você consegue modificar os arquivos, fazer commits e mudanças no projeto?
+
+Gabrielle: Sim, isso é possível. Descobriremos como no vídeo seguinte. Te esperamos lá!
+
+@@02
+Realizando um commit
+
+Transcrição
+
+Rodrigo: Gabi, você já conseguiu baixar o projeto do repositório público da minha conta do GitHub e também importou na IDE, no Visual Studio Code.
+Agora, vamos descobrir se você consegue trabalhar no mesmo projeto que desenvolvi e fiz upload para o repositório no GitHub.
+
+O que você acha de aumentarmos a dificuldade do jorgo Número Secreto? Atualmente, ele sorteia um número de 1 a 10. Que tal modificarmos para escolher um número aleatório entre 1 e 100?
+
+Gabrielle: Essa é uma alteração interessante, vamos lá!
+
+Realizando um commit
+index.hmtl
+Começamos abrindo o arquivo index.html. Feito isso, na linha 23, no texto Escolha um número entre 1 a 10, mudamos para 10 a 100.
+
+//Código omitido
+
+<p class="texto__paragrafo">Escolha um número entre 1 a 100</p>
+
+//Código omitido
+app.js
+Em seguida, abrimos o arquivo app.js. Na linha 2, mudamos a variável numeroLimite para 100.
+
+let numeroSecreto = parseInt(Math.random() * 11)
+let tentativas = 1
+let chute
+
+//código omitido
+Rodrigo: Estamos simulando uma mudança no código do projeto, como se tivesse sido solicitada por um usuário ou cliente.
+
+Sendo assim, realizamos as alterações, porém ainda não estão registradas no repositório local do computador.
+
+Gabrielle: Isso mesmo, precisamos registrar essas alterações. Para isso, na barra de menu superior do VS Code, clicamos em "Terminal" e depois em "New terminal" para abrí-lo.
+
+Rodrigo: Nessa funcionalidade você precisou mexer em dois arquivos, certo? Suponhamos que isso foi feito em uma sexta-feira e quando você voltou ao trabalho na semana seguinte, não lembra onde parou no projeto.
+
+Tem algum comando no GitHub para sabermos o estado atual do código?
+
+Gabrielle: Sim, o comando é o git status.
+
+git status
+Ao executá-lo é exibido na tela informações sobre as alterações feitas nos arquivos app.js e index.html do projeto e que essas mudanças que precisam ser registradas no commit.
+
+Rodrigo: Então, se esquecermos qual arquivo foi modificado ou qual precisa ser adicionado, basta executar esse comando que será exibido o status atual do repositório local.
+
+No nosso caso, temos dois arquivos modificados que estão destacados em vermelho porque ainda não foram adicionados para fazer o commit na sequência.
+
+Gabrielle: Repare que o próprio git status nos fornece uma dica para usar o comando git add seguido do nome do arquivo para fazer essa adição.
+
+Anteriormente descobrimos que temos a opção de adicionar arquivo por arquivo, escrevendo o nome de cada um, ou podemos adicionar todas as mudanças de uma vez com o ponto. Portanto, usaremos o git add ..
+
+git add .
+Feito isso, provavelmente os arquivos foram adicionados Para conferir, rodamos novamente o git status.
+
+git status
+Repare que ao fazer isso, notamos no terminal que a ferramenta indica que existem alterações para serem comitadas e quais foram os arquivos modificados. Além disso, a cor mudou para verde, isso significa que os arquivos foram adicionados corretamente.
+
+Rodrigo: Muito legal, Gabi. O GitHub tem essa sinalização pelas cores, se os arquivos modificados, mas não foram adicionados ficam vermelhos quando são ficam verdes.
+
+Agora que você já adicionou, podemos fazer o commit, que é o comando responsável por registrar uma modificação no código.
+
+Gabrielle: Para isso, passamos o comando git commit. Lembrando que todo commit sempre terá uma mensagem que informará qual alteração foi feita no projeto.
+
+Para adicionar essa mensagem, na mesma linha de comando escrevemos -m "alterando limite para 100" e apertamos "Enter".
+
+git commit -m "alterando limite para 100"
+Como retorno é informado que o commit foi realizado com sucesso.
+
+Rodrigo: Importante ressaltar que, quando fazemos um commit é como se estivéssemos registrando uma versão do nosso sistema. Se estávamos na versão 1, passamos para a versão 2, depois para a versão 3, 4, 5, e assim por diante.
+
+Porém, precisamos saber o que é a versão 1, o que mudou na versão 2, 3 e 4. É justamente a mensagem que proporciona esse indicativo.
+
+Disponibilizamos no Para Saber Mais dicas de boas práticas para desenvolver essa mensagem para que fique compreensível e as pessoas entendam as mudanças e o que cada alteração muda no projeto.
+Inclusive, Gabi, existe algum comando em que conseguimos identificar quais commits foram realizados no projeto e quem fez?
+
+Gabrielle: Tem, sim, Rodrigo! Para isso, podemos utilizar o comando git log.
+
+git log
+Ao executá-lo é exibido o histórico dos commits que foram feitos ao longo do projeto.
+
+Se analisarmos o retorno, retonhamos o primeiro commit que o Rodrigo fez para subir o projeto inicial. Identificamos o nome do autor, data seguido da mensagem. Logo acima temos o commit mais atual que é o que acabamos de fazer.
+
+Rodrigo: Observe que o git log mostra o log, ou seja, o histórico de commits realizados no projeto. Assim, podemos identificar quem foi que fez cada registro, a mensagem, o significado de cada registro, a data e toda essa sequência de alterações no repositório.
+
+Ótimo! Gabi, você conseguiu fazer uma modificação no projeto e efetuou o commit. Porém, é importante lembrar que o commit está apenas no seu repositório local, ainda não foi enviado para o GitHub.
+
+Na sequência descobriremos como enviar esse commit para o repositório no GitHub.
+
+@@03
+Para saber mais: sinalizações em arquivos do VSCode
+
+Quando estamos trabalhando em um projeto utilizando o versionamento Git e a IDE VSCode, ao adicionar ou alterar algum arquivo aparece uma sinalização ao lado do nome desses arquivos no VSCode, como podemos ver na imagem abaixo:
+Imagem com print do VSCode, da lateral esquerda que lista a estrutura de arquivos do projeto. Na imagem temos um arquivo chamado index.html com a sinalização de uma letra M ao lado direito e um arquivo chamado README.md com a sinalização de uma letra U ao lado direito.
+
+Mas o que isso significa?
+
+M: A letra M representa o estado Modified, do português modificado. Isso significa que o arquivo já existia no repositório, mas que recebeu alguma modificação que ainda não foi registrada no Git.
+U: A letra U representa o estado Untracked, do português não rastreado. Isso significa que o arquivo ainda não existia no repositório e que ainda não teve seu registro (commit) feito no Git.
+Essa sinalização nos ajuda a entender o estado atual dos nossos arquivos do projeto no versionamento Git.
+
+@@04
+Para saber mais: mensagens de commits
+
+Apesar de não existir uma regra universal para a escrita das mensagens de commit, algumas boas práticas podem ser seguidas para garantir que outras pessoas, e até mesmo você no futuro, entendam que alterações foram feitas e por quê.
+As mensagens dos commits devem ser simples e objetivas. A seguir, listamos algumas orientações para isso:
+
+Mantenha a mensagem curta e concisa: A primeira linha da mensagem deve conter, no máximo, 72 caracteres. Caso seja necessário uma descrição adicional, você deve pular uma linha e adicionar os detalhes, como o contexto, da mudança realizada.
+Uso de verbo no infinitivo: É comum que a mensagem do commit inicie com um verbo no infinitivo que descreva a alteração feita, como “adicionar”, “corrigir” ou “atualizar”. Em sequência, são adicionados detalhes concisos da mudança. Por exemplo: “Atualizar texto do título da página”.
+Evite detalhes técnicos: Não inclua detalhes técnicos complexos na mensagem de commit. Esses detalhes podem ser adicionados nos comentários de código ou na documentação.
+É importante ter em mente que a mensagem do commit é uma forma de documentação do histórico das mudanças que ocorreram ao longo do código. A pessoa que ler essa mensagem pode não ter conhecimento do contexto original. Assim, garanta que suas mensagens de commit tenham clareza e sejam suficientemente descritivas.
+
+@@05
+Para saber mais: quando realizar um commit?
+
+Um commit deve ser realizado sempre que você finalizar uma tarefa específica ou resolver algum bug. Isso mantém o histórico de commits claro e rastreável, de modo que seja possível entender o que foi feito em cada commit.
+Assim, é importante realizar commits frequentemente. Porém, evite realizar commits muito pequenos ou muito grandes, pois isso pode tornar difícil o seu entendimento.
+
+Lembre-se de nunca realizar um commit de um código que você sabe que contém bugs. O ideal é que o commit contenha somente código funcional.
+
+@@06
+Para saber mais: como o Git controla as mudanças?
+
+O controle de mudanças do Git é feito através dos commits. Cada commit armazena o estado completo do projeto em um determinado momento por meio de um snapshot. Ou seja, cada commit é um registro completo do repositório no momento em que esse commit foi criado.
+Como cada commit é uma representação completa e consistente do estado do projeto em um determinado ponto no tempo, isso facilita a rastreabilidade e o entendimento de como se deu a evolução do código ao longo do tempo.
+
+Todo commit conta com um id único e traz uma referência aos commits anteriores. Assim, através dessa cadeia de commits, o Git registra um histórico completo de todos os commits realizados no repositório.
+
+Caso queira conhecer melhor sobre esse processo, acesse a documentação oficial do Git.
+
+https://git-scm.com/book/pt-br/v2/Começando-O-Básico-do-Git
+
+@@07
+Realizando um commit
+
+O commit é uma ação muito importante do Git para nos ajudar no controle da versão do nosso projeto. Um commit pode ser considerado como um marco ao longo do cronograma de um projeto.
+Sabendo disso, quando realizamos um commit, estamos:
+
+Criando um repositório no GitHub.
+ 
+Alternativa incorreta
+Enviando as alterações do projeto para o repositório remoto.
+ 
+Alternativa incorreta
+Adicionando as alterações mais recentes do projeto.
+ 
+Um commit guarda o estado do seu projeto naquele momento.
+
+@@08
+Enviando commits
+
+Transcrição
+
+Rodrigo: Gabi, você conseguiu clonar o repositório para o seu computador local, fazer uma alteração no código e o commit.
+Porém, essa alteração só existe no seu repositório local. Então, tentaremos fazer o mesmo processo realizado anteriormente, enviaremos o commit para o GitHub utilizando o comando git push.
+
+Gabrielle: Mas, nesse caso, precisamos repetir a conexão com o repositório?
+
+Rodrigo: Anteriormente, quando seguimos o tutorial, primeiro utilizamos o comando git remote add para adicionar no repositório local um link com o repositório remoto. Só depois fizemos o git push. Porém, você não precisará repetir esses passos, pois rodou o comando clone do repositório.
+
+Gabrielle: O comando clone já realiza automaticamente essa conexão entre o repositório remoto e o repositório local.
+
+Rodrigo: Inclusive, você pode verificar isso rodando o comando git remote sem passar nenhum parâmetro. Ao fazer isso, será listado os repositórios remotos no seu repositório local.
+
+Gabrielle: Então, vamos passar o comando git remote seguido de "Enter".
+
+git remote
+Feito isso é exibido o origin.
+
+Rodrigo: O origin é o nome que o GitHub atribui quando fazemos o clone, é como se referisse a origem do repositório.
+
+Como você já tem o repositório remoto adicionado, agora pode executar o comando git push para tentar enviar esse commit para o meu repositório no GitHub.
+
+Gabrielle: Passamos git push e em sequência precisamos informar para onde enviaremos o commit. Escrevemos origin que é o apelido do repositório remoto, seguido de main que é a branch e apertamos "Enter".
+
+Embora não vamos nos aprofundar nesses termos agora, em breve você encontrará um material explicativo para aprofundar ainda mais seu conhecimento sobre o tema.
+git push origin main
+Ao executar o comando notamos um erro.
+
+Rodrigo: É um erro de permissão, certo? Já esperava que isso acontecesse, afinal, se o erro não aparecesse teria algo errado.
+
+O repositório foi criado na minha conta do GitHub com meu e-mail pessoal e você tem outra conta. Embora você tenha conseguido baixar o repositório, criado como público, esse é um material público apenas para leitura.
+
+Isso significa que as pessoas podem acessá-lo, baixar o código, fazer mudanças e commits, porém apenas localmente. Quando alguém tentar fazer um push, o próprio GitHub irá barrar.
+
+Isso porque você é outra pessoa usuária que está tentando fazer um push para um repositório da minha conta, Rodrigo. Isso não é permitido, a não ser que eu dê permissão.
+
+Adicionando colaboradores ao projeto
+Rodrigo: Se quisermos que outras pessoas colaborem nesse projeto, é preciso adicioná-las manualmente no projeto. Para isso, no navegador, logamos no Github e acessamos a página do repositório numero-secreto.
+
+Na barra de menu superior, clicamos no botão "Settings", que se refere a configuração. Em seguida, somos encaminhados para uma nova tela.
+
+No menu lateral esquerdo, clicamos em "Collaborators". Feito isso, notamos que não há nenhum colaborador. Para adicionarmos, no fim da tela, clicamos no botão verde chamado "Add people".
+
+Na nova janela, há um campo referente ao username da pessoa que adicionaremos como colaboradora. Preenchemos com o user da Gabi e depois clicamos no botão "Add".
+
+Ao fazer isso, a ferramenta indica que o pedido de acesso está pendente, pois a Gabi precisa aceitá-lo. Sendo assim, esse processo não é automático.
+
+Então, Gabi, esse é seu momento de compartilhar a tela.
+
+Gabrielle: No navegador, acesso meu e-mail do GitHub. Feito isso, notamos o e-mail do GitHub com o convite. Para visualizá-lo, clicamos no botão "View invitation".
+
+Rodrigo: Repare que, se voltarmos a minha tela, a Gabi agora aprece como colaboradora do repositório.
+
+Isso é o que você fará no dia a dia de trabalho. Quando estiver em um repositório e quiser que outras pessoas colaborem, será necessário adicioná-las como colaboradoras.
+
+Gabi, agora, se você tentar rodar o comando push é para funcionar. Vamos testar?
+
+Gabrielle: Vamos nessa. No terminal do VS Code, digitamos novamente o comando git push origin-main e pressionamos Enter.
+
+git push origin main
+Feito isso, é exibido uma mensagem que o commit foi enviado para o repositório.
+
+Rodrigo: Vamos conferir. No site do GitHub, na barra de menu superior, clicamos em "Code" para voltarmos para a página inicial do repositório.
+
+No arquivo app.js conseguimos notar a mudança de "alterando o limite para 100" e ao lado a foto da Gabi, que fez a alteração.
+
+Na lateral superior direita, a ferramenta indica que há dois commits. Se clicarmos, visualizamos o primeiro que é o projeto inicial e o segundo o atualizado.
+
+Se clicarmos no commit encontramos os arquivos modificados e as alterações realizadas em cada um deles. Então, deu certo, Gabi. Você conseguiu colaborar comigo neste projeto!
+
+Gabrielle: Ótimo, Rodrigo! Porém, agora que enviei as alterações, imagino que você queira continuar trabalhando no seu projeto. Como podemos trazer essas modificações que estão no GitHub para o seu computador?
+
+Rodrigo: Isso é muito importante! O último commit existe no seu repositório local, porque você o fez no seu computador.
+
+Embora você tenha feito o push, que está no GitHub, no meu repositório local ele ainda não existe, pois não é sincronizado automaticamente.
+
+No vídeo seguinte vamos descobrir como baixar os novos commits para o repositório local.
+
+Até lá!
+
+@@09
+Para saber mais: adicionando colaboradores no commit
+
+Cada commit possui por padrão um autor, que é a pessoa que realizou aquelas alterações no código.
+Entretanto, quando trabalhamos em equipe pode ser que algum trecho de código seja escrito em dupla ou trio. Assim, como definir a autoria dessas outras pessoas no commit?
+
+O Git oferece a possibilidade de adicionar mais de um autor a um commit. Para isso, após escrever a mensagem do commit, pulamos duas linhas e usamos a palavra-chave Co-authored-by:, seguido do nome e e-mail associado ao GitHub (entre < >) de cada pessoa colaboradora.
+
+Cada coautor deve estar em uma linha diferente, como é mostrado no exemplo a seguir:
+
+$ git commit -m "Adicionar nova funcionalidade.
+>
+>
+Co-authored-by: NOME <nome@email.com>
+Co-authored-by: OUTRO-NOME <outro@email.com>"
+COPIAR CÓDIGO
+Caso queira entender mais sobre coautoria no GitHub, você pode acessar a documentação referente ao assunto.
+
+https://docs.github.com/pt/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors
+
+@@10
+Para saber mais: outras formas de colaborar
+
+Existem diversos projetos de software com seu código fonte disponível no GitHub e abertos para colaboração de qualquer um que queira contribuir. Esse modelo de desenvolvimento é chamado de Open Source ou Código Aberto.
+Caso queira entender mais sobre projetos Open Source, temos aqui na Alura o artigo Open Source - Uma breve introdução, que fala mais sobre o tema.
+
+Em um projeto que segue o modelo Open Source, as demandas, como novos recursos e correção de bugs, são descritas e listadas no repositório do GitHub via issues. Assim, caso você queira colaborar, é possível escolher uma issue.
+
+Você precisará realizar um fork do projeto, que é uma cópia do repositório em sua conta. Assim, você poderá escrever o código que soluciona a issue escolhida.
+
+Por fim, para enviar sua solução de volta ao repositório fonte, você precisará abrir um pull request, que é uma solicitação de pull das suas alterações. Esse pull request passará por um processo de avaliação dos responsáveis pelo projeto, podendo ser aceito ou não.
+
+Caso seja aceito, seu código agora fará parte do código fonte desse projeto.
+
+É importante sempre se atentar às regras de contribuição de cada repositório, que podem variar de acordo com o projeto.
+
+Grandes projetos são Open Source e se encontram no GitHub, como a IDE VS Code e o framework React, do JavaScript. Você pode conferir os repositórios desses projetos nos links abaixo:
+
+Repositório do VS Code no Github
+Repositório do React no Github
+
+https://www.alura.com.br/artigos/open-source-uma-breve-introducao
+
+https://github.com/microsoft/vscode
+
+https://github.com/facebook/react-native
+
+@@11
+Baixando novos commits
+
+Transcrição
+
+Gabrielle: No vídeo anterior, fizemos alterações no projeto e as enviamos. Porém, ainda não estão no repositório local do Rodrigo. Vamos descobrir como fazer isso.
+Baixando novos commits
+Rodrigo: Vamos lá! No GitHub, já temos o seu commit, mas se abrirmos o VS Code, o código continua na versão antiga, na qual o número limite que pode ser sorteado é 10.
+
+Isso significa que o repositório local não atualizou automaticamente o commit feito pela Gabi. Para isso, existe o comando git pull especificamente para isso. Ele funciona como o oposto do push, já que puxa os commits do remoto para o local.
+
+Para isso, além de git pull, na mesma linha de código indicamos qual é o repositório remoto do qual baixaremos esses commits, nesse caso será o origin. Em seguida, passamos a branch main, onde ele trará esses commits para o repositório local.
+
+git pull origin main
+Após dar "Enter", a ferramenta irá sincronizar com o GitHub. Nisso, aparece uma mensagem dizendo que há um commit, porém no remoto há outro, então esse é baixado.
+
+Gabrielle: Para verificarmos se isso foi feito, podemo rodar o git log.
+
+`git log`
+Rodrigo: Assim, temos o commit feito pela Gabi, seguido da data e da mensagem. Se no Explorer abrirmos o arquivo app.js, notamos a mudança no código.
+
+Portanto, o comando git pull tem esse objetivo, baixar os novos commits que outras pessoas colaboradoras do seu repositório enviaram para o GitHub. Com isso, temos um fluxo de trabalho.
+
+Gabrielle: Exatamente, Rodrigo. Quando estamos trabalhando com Git, GitHub, utilizamos sempre esses comandos que aprendemos ao longo desta aula. Vamos relembrá-los!
+
+Quando estivermos trabalhando em um projeto e precisarmos realizar mudanças, usaremos o git status para verificar os arquivos modificados.
+
+Adicionaremos essas mudanças com o comando git add, depois, realizaremos um commit com o git commit. Subiremos essas mudanças para o repositório com o git push e eventualmente, conforme outras pessoas forem colaborando com o projeto, traremos essas mudanças novamente para o computador com o git pull.
+
+Rodrigo: Esse é o fluxo de trabalho no dia a dia. Cada pessoa faz o clone do repositório local e centralizam no repositório remoto do GitHub, permitindo a colaboração de todos.
+
+Por isso utilizar o GitHub para trabalhar de maneira colaborativa com projetos de software é muito interessante.
+
+Gabrielle: Até o momento, digitamos esses comandos no terminal, mas acredito que há uma forma mais fácil de realizar isso.
+
+Rodrigo: É verdade! Nesse caso, estamos usando o VS Code como IDE. Geralmente as IDEs já possuem integração com o Git, pois é o principal sistema de controle de versão.
+
+Então, todo trabalho que fizemos aqui no terminal conseguimos fazer dentro do VS Code de uma maneira visual, tornando esse trabalho muito mais simples.
+
+É isso que estudaremos na aula seguinte!
+
+@@12
+Trabalhando em conjunto
+
+Você faz parte do time de desenvolvimento do Bytebank, um banco digital em rápido crescimento. Seu time está trabalhando em um novo sistema que necessita da colaboração de todas as pessoas e você precisa atualizar o código em seu computador local, com os últimos commits feitos pelos colaboradores do projeto.
+Qual comando você deve usar para baixar os commits enviados pelas outras pessoas do time?
+
+Alternativa incorreta
+git clone https://github.com/bytebank/banco-digital
+ 
+O comando git clone é usado para clonar um repositório remoto para o seu computador local, não para resgatar commits de colaboradores.
+Alternativa incorreta
+git commit -m "Atualização"
+ 
+O comando git commit -m "Atualização" é usado para realizar um novo commit no repositório local, e não para baixar commits do repositório remoto.
+Alternativa incorreta
+git push origin master
+ 
+O comando git push origin master é usado para enviar seus commits locais para o repositório remoto.
+Alternativa incorreta
+git pull origin main
+ 
+O comando git pull origin main é utilizado para baixar os commits do repositório remoto para o repositório local.
+
+@@13
+Faça como eu fiz: baixando e modificando um projeto
+
+Agora é com você! Baixe uma cópia do repositório remoto no GitHub para o seu computador, realize alguma modificação no projeto, registre essas alterações no Git e as envie novamente para o repositório no GitHub.
+
+Opinião do instrutor
+
+Para baixar o repositório em seu computador, você deve realizar um clone do projeto através do comando:
+git clone https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git
+COPIAR CÓDIGO
+Lembre-se de substituir o SEU_USUARIO pelo seu próprio usuário do GitHub e o SEU_REPOSITORIO pelo nome do seu repositório no GitHub.
+Caso você já tenha o projeto em seu computador, ao invés de realizar um clone, você pode baixar somente uma atualização dos commits através do comando:
+
+git pull origin main
+COPIAR CÓDIGO
+Depois disso, abra o projeto que você acabou de baixar no VS Code. Altere algo no código, como o limite superior de valores de 10 para 100, nos arquivos de app.js e index.html.
+
+Após salvar as alterações, visualize quais arquivos foram modificados no repositório local com o comando:
+
+git status
+COPIAR CÓDIGO
+Agora, para registrar as alterações feitas, use os comandos a seguir:
+
+git add .
+git commit -m “MENSAGEM”
+COPIAR CÓDIGO
+Lembre-se de substituir o MENSAGEM, por um texto que descreva brevemente qual alteração você realizou.
+Para enviar as alterações feitas para o repositório remoto no GitHub, use o comando a seguir:
+
+git push origin main
+COPIAR CÓDIGO
+Caso você queira verificar se funcionou, basta abrir o seu repositório no GitHub, atualizar a página e o novo commit deverá aparecer por lá.
+
+@@14
+Desafio: hora da prática
+
+Manipular diferentes versões de um mesmo projeto pode se tornar desafiador. No entanto, o uso eficiente das ferramentas de versionamento elevam a qualidade do código e tornam o fluxo de trabalho muito mais fácil para toda a equipe. Para isso se tornar uma realidade dentro da rotina da pessoa desenvolvedora, é preciso seguir com a prática constante.
+Pensando nisso, desenvolvemos uma lista com exercícios não obrigatórios que abrangem desde a criação de um novo repositório remoto até a sincronização com alterações feitas por outros colaboradores. Tudo para que você desenvolva uma compreensão sólida do fluxo de trabalho do Git enquanto explora comandos essenciais.
+
+Desafios:
+
+Crie um novo repositório remoto no Github e insira um arquivo.
+Faça um clone do seu repositório remoto para o local.
+Faça uma nova modificação no repositório remoto.
+Atualize seu repositório local a partir do Remoto.
+Utilize o comando git remote -v no terminal.
+Confira as mudanças nos arquivos.
+Caso precise de ajuda, opções de solução das atividades estarão disponíveis na seção “Opinião da pessoa instrutora”.
+
+Opinião do instrutor
+
+Desafio 1: Criar um novo repositório remoto no GitHub e inserir um arquivo.
+Faça login na sua conta do GitHub.
+Clique no sinal de "+" no canto superior direito e escolha "New repository".
+Siga as instruções para criar um novo repositório, dando um nome e uma descrição, se desejar.
+No GitHub, vá para o repositório recém-criado: Clique em "Add file" e escolha a opção que preferir para adicionar um novo arquivo (pode ser um README.md para simplificar).
+O print apresenta o campo à direita com as opções goTofile , add file e code. O botão add file está selecionado e aparece uma nova opção na cor azul com o texto "Create new file". Desafio 2: Faça um clone do seu repositório remoto para o local.
+
+Abra o terminal no seu computador.
+Navegue até o diretório onde deseja clonar o repositório.
+Execute o comando git clone <url-do-seu-repositorio>.
+Desafio 3: Faça uma nova modificação diretamente no GitHub.
+
+Acesse o seu repositório no GitHub.
+Abra um arquivo existente ou crie um novo.
+Faça as alterações desejadas diretamente no GitHub e salve.
+Dica: Você pode clicar no arquivo existente e selecionar a opção “Edit this file” (tradução livre para o português: Edite este arquivo)
+
+O print apresenta o campo à esquerda com as opções code e blame. À direita há várias opções, da esquerda para a direita: um campo com o texto ‘Raw’. Um ícone com dois quadrados sobrepostos. Uma seta em um retângulo semiaberto. Um ícone de lápis com o texto acima “Edit this file”. Um ícone com um quadrado e dentro dele um <>
+
+Desafio 4: Atualize seu repositório local a partir do Remoto.
+
+Navegue até o diretório do seu repositório local usando o terminal.
+Execute o comando git pull origin main para trazer as últimas alterações do repositório remoto para o seu local.
+Desafio 5: Utilize o comando git remote -v no terminal.
+
+Liste repositórios remotos:
+No terminal, navegue até o diretório do seu repositório local.
+Execute git remote -v para listar as entradas remotas configuradas e suas URLs.
+O comando é usado para listar todas as entradas remotas configuradas no repositório Git atual. Cada entrada remota é representada por um nome e uma URL. O nome da entrada remota é usado para referenciar outros comandos git, como o git fetch e git push.
+
+Por exemplo, se o seu repositório Git tiver uma entrada remota chamada origin que aponta para o URL https://github.com/meu-usuário/meu-repositório.git, o comando git remote -v exibirá o seguinte:
+
+origin  https://github.com/meu-usuário/meu-repositório.git (fetch)
+origin  https://github.com/meu-usuário/meu-repositório.git (push)
+COPIAR CÓDIGO
+Desafio 6: Confira as mudanças nos arquivos.
+
+No diretório do seu repositório local, digite no terminal o comando git status para ver arquivos modificados
+
+@@15
+O que aprendemos?
+
+Nessa aula, você aprendeu como:
+Baixar uma cópia de um repositório hospedado no GitHub para o seu computador, utilizando o comando git clone;
+Realizar alterações no código de um projeto e registrá-las com commits, utilizando os comandos git add e git commit;
+Visualizar quais arquivos foram modificados no repositório local, utilizando o comando git status;
+Listar os commits realizados no repositório, com dados do autor, data e mensagem de cada commit, utilizando o comando git log;
+Visualizar os repositórios remotos linkados com o repositório local, utilizando o comando git remote;
+Enviar commits feitos no repositório local para o repositório remoto, utilizando o comando git push;
+Baixar commits do repositório remoto para o repositório local, utilizando o comando git pull;
+Adicionar uma pessoa como colaboradora em um repositório no GitHub, e também como aceitar um convite de colaboração recebido.
+
