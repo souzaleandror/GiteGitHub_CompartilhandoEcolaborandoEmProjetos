@@ -1396,3 +1396,372 @@ Enviar commits feitos no repositório local para o repositório remoto, utilizan
 Baixar commits do repositório remoto para o repositório local, utilizando o comando git pull;
 Adicionar uma pessoa como colaboradora em um repositório no GitHub, e também como aceitar um convite de colaboração recebido.
 
+#02/11/2025
+
+@03-Utilizando Git na IDE
+
+@@01
+Git no VSCode
+
+Transcrição
+
+Gabrielle: Como mencionamos anteriormente, estamos usando o Git apenas pelo terminal, digitando comandos. No entanto, existe uma forma mais fácil de usar esses comandos do Git por meio da interface gráfica, não é, Rodrigo?
+Rodrigo: Isso mesmo! Existe a opção de usar o Git pelo prompt de comandos, seja o prompt do Windows ou o integrado no Visual Studio Code, mas como mencionamos antes, existe uma integração do próprio VS Code que facilita esse processo, de uma forma visual, com ícones. Portanto, vamos aprender a usar esse recurso.
+
+Estou com o meu Visual Studio Code aberto e vou fechar essa janela do terminal clicando no ícone "X" no canto superior direito do terminal. Depois, na barra de menu, na lateral esquerda da janela, temos o ícone do Explorador, que é o primeiro, seguido do de Busca, que é o segundo.
+
+O terceiro ícone, que tem forma de um Y com círculos nas extremidades, é, justamente, o ícone da integração do Git dentro do VS Code, chamada "Source Control" (Controle de Origem). Clicando nessa opção, abrimos uma aba onde mostra, de maneira visual, todas as alterações no código, e nós podemos fazer o commit, o pull, o push, tudo diretamente pela interface. Faremos uma simulação modificando o projeto.
+
+Então, estou com o arquivo app.js aberto. Vamos imaginar que nós queremos fazer uma mudança no sistema. Imagine que as pessoas que estão usando nosso jogo achem que ficou difícil acertar um número entre 1 e 100, então alteramos para ser entre 1 e 50, para ficar um pouco mais fácil.
+
+let listaDeNumerosSorteados = [];
+let numeroLimite = 50;
+let numeroSecreto = gerarNumeroAleatorio();
+let tentativas = 1;
+
+//código omitido
+COPIAR CÓDIGO
+Após alterarmos o app.js, voltaremos ao explorador de arquivos e abriremos o index.html, onde trocaremos o texto do parágrafo na linha 23, dentro da <div class="container__texto">, para Escolha um número entre 1 e 50. Pronto, fizemos uma mudança no projeto, alterando dois arquivos.
+
+<!-- código omitido -->
+<div class="container__texto">
+        <h1>Adivinhe o <span class="container__texto-azul">numero secreto</span></h1>
+        <p class="texto__paragrafo">Escolha um número entre 1 e 50</p>
+</div>
+<!-- código omitido -->
+COPIAR CÓDIGO
+Agora, no ícone do Git que fica na barra lateral esquerda da janela, notamos que ele está com o número 2 dentro de um círculo azul. Isso indica que há alterações no projeto.
+
+Gabrielle: Esse número que aparece mostra que há mudanças e a quantidade delas.
+
+Rodrigo: Ao clicarmos, a aba que abre à direita da barra mostra uma lista suspensa chamada "Changes" (Mudanças), que podemos minimizar ou expandir. Dentro dessa lista estão todos os arquivos que foram alterados.
+
+Para fazermos um commit, ele até destaca na parte superior dessa aba uma caixa de texto, para digitarmos a mensagem, e um botão azul abaixo dela, escrito "Commit", para realizarmos o commit. Lembrando que, antes de fazermos o commit, temos que adicionar os arquivos.
+
+Ao passarmos o mouse sobre cada um dos arquivos, ele mostra três ícones no lado direito do nome, sendo eles, da esquerda para direita:
+
+Open file (Abrir arquivo): clicando nele, abrimos o arquivo alterado. Esse ícone tem o formato de uma folha de papel com o canto superior direito dobrado e uma seta de retorno no canto superior esquerdo da folha;
+Discard Changes (Descartar mudanças): ao ser clicado, esse botão desfaz as mudanças no arquivo. Podemos clicar nele quando alteramos arquivos por engano. Ele tem o formato de uma seta curva que aponta para esquerda;
+Stage Changes (Preparar mudanças): clicando nele, adicionamos o arquivo ao próximo commit. O ícone é um sinal de mais.
+Clicaremos no botão "Stage Changes" nos dois arquivos. Agora a lista "Changes" está vazia e os dois arquivos passaram para uma nova lista suspensa na parte superior chamada "Staged Changes" (Mudanças preparadas). São as alterações que já foram adicionadas e já podemos realizar o commit. Vamos fazer um commit, Gabi?
+
+Gabrielle: Vamos lá! Para isso, precisamos informar uma mensagem novamente. Temos esse campo na parte superior da aba onde podemos escrever a mensagem do commit.
+
+Rodrigo: Exatamente como fizemos no terminal, mas agora de uma maneira mais simples. Então, digitaremos a mensagem "Deixando o jogo mais fácil". Depois de escrever, clicamos no botão azul chamado commit.
+
+A princípio, ele realizou o commit e o botão azul mudou o texto para "Sync Changes 1" (Sincronizar Mudanças 1), ou seja, se tornou um botão de sincronização. Ele detectou que há um commit no meu repositório local, mas que ele ainda não foi enviado para o GitHub.
+
+Então, é exibido esse botão para sincronizar as mudanças com o repositório remoto. Ao clicarmos no botão "Sync Changes 1", os dados devem ser enviados para o GitHub. Para isso, apareceu um alerta no centro da tela com uma mensagem informando que essa ação sincroniza com o "origin/main".
+
+Isso significa que ele enviará para o seu repositório remoto o que está na branch main. Esse alerta aparece em uma janela onde na parte inferior tem três botões:
+
+Ok: para confirmar;
+Ok, Don't Show Again" (Ok, Não mostre de novo): para confirmar a ação e não mostrar esse pop-up todas as vezes que fizermos um commit;
+Cancel (Cancelar): para cancelar o commit caso tenhamos clicado por engano.
+Clicaremos no segundo botão, para confirmarmos o commit e essa mensagem não aparecer novamente. Após clicarmos, ele irá sincronizar as mudanças, o que pode demorar um pouco. Após concluir, o botão da aba do Git fica desativado e volta ao texto "Commit".
+
+Gabrielle: Vamos conferir o repositório para confirmarmos se de fato ocorreu a sincronização?
+
+Rodrigo: Recomendo que façamos isso. Então, abriremos o navegador na página do repositório no GitHub. Vamos atualizar a página, pressionando "F5" e, na parte superior da lista de arquivo, encontramos meu último commit.
+
+rodrigoalura87 Deixando o jogo mais fácil
+No canto superior direito da lista de arquivos, encontramos a informação que há três commits. Clicando nesse link, abrimos a lista de commits. Clicando no "Deixando o jogo mais fácil", acessamos o detalhamento desse commit, onde vemos uma demonstração visual das mudanças feitas. Portanto, funcionou.
+
+A ideia é que nós sempre utilizemos o Git no VS Code por essa opção, pois simplifica o processo de sincronização das mudanças, certo, Gabi?
+
+Gabrielle: Realmente, fica muito mais fácil. Nós não precisamos digitar todos aqueles comandos.
+
+Estamos trabalhando de maneira colaborativa neste projeto e pode acontecer uma situação em que eu altere uma linha do nosso código e você altere exatamente a mesma linha. Como o GitHub se comporta quando isso acontece?
+
+Rodrigo: É uma boa pergunta. Agora, não estou trabalhando sozinho, há várias pessoas trabalhando no projeto. Eventualmente, duas ou mais pessoas precisarão alterar um arquivo em comum.
+
+Mesmo que as pessoas estejam trabalhando em funcionalidades distintas do sistema, pode ser que essas funcionalidades compartilhem o mesmo arquivo. E, caso duas pessoas alterem o mesmo arquivo, na mesma linha, isso causará um conflito.
+
+Na sequência, veremos com calma como o Git funciona quando acontece essa situação de conflito.
+
+@@02
+Simulando um conflito
+
+Transcrição
+
+Gabrielle: Ao trabalharmos com o Git e GitHub, é comum termos projetos nos quais várias pessoas colaboram, podendo ocorrer conflitos. Por exemplo, Rodrigo, eu fiz uma alteração no nosso projeto, alterando novamente o limite para 40. Vamos simular um conflito?
+Rodrigo: Vamos verificar como o Git nos avisa quando há um conflito e o que ele faz. A Gabi já fez essa alteração no projeto, no repositório local dela, alterando os dados numéricos para 40.
+
+Ela já fez o commit e o push para o GitHub. Para baixar esses commits, precisamos acessar a aba de Controle de Origem, ou seja, a integração com o Git. Em seguida, clicamos no terceiro ícone da barra lateral esquerda. Nessa aba, clicaremos no botão "Views and More Actions" (Views e Mais Ações), que tem o ícone de reticências (…) e fica no canto superior direito da aba.
+
+Com isso, abrimos um menu suspenso onde a terceira opção é "Pull" (Puxar). Ao clicarmos nele, baixamos os commits da Gabi. Porém, antes disso, vamos alterar o mesmo arquivo na mesma linha e fazer um commit.
+
+Quando o Git for tentar baixar o commit da Gabi, haverá um conflito com o meu commit, porque ambos estão alterando o mesmo arquivo, na mesma linha. Vamos descobrir o que acontece nessa situação.
+
+Alteraremos o arquivo index.html, mudando a informação do parágrafo de 50 para 30. Depois alteramos o app.js, alterando o numeroLimite para 30.
+
+Arquivo index.html
+<!-- código omitido -->
+<div class="container__texto">
+        <h1>Adivinhe o <span class="container__texto-azul">numero secreto</span></h1>
+        <p class="texto__paragrafo">Escolha um número entre 1 e 30</p>
+</div>
+<!-- código omitido -->
+COPIAR CÓDIGO
+Arquivo app.js
+let listaDeNumerosSorteados = [];
+let numeroLimite = 30;
+let numeroSecreto = gerarNumeroAleatorio();
+let tentativas = 1;
+
+//código omitido
+COPIAR CÓDIGO
+Após estas alterações, abriremos a aba do Git no VS Code, onde ele já identificou duas alterações. Adicionaremos os dois arquivos, clicando no ícone "+", e escreveremos uma mensagem deixando o jogo mais fácil ainda e clicaremos no botão "Commit".
+
+Em seguida, clicaremos no botão com o ícone de reticências no canto superior direito da aba e, no menu, clicaremos no "Pull". O Git deveria identificar um conflito, ou seja, que meu repositório local foi alterado em uma linha específica e, no commit remoto, que ele tentará trazer, tem uma alteração na mesma linha do mesmo arquivo.
+
+Ao clicarmos no Pull, ele tenta sincronizar e mostra uma mensagem de erro. Inclusive, apareceu um pop-up, no canto inferior direito do Visual Studio Code, informando que houve um conflito ao tentar fazer o merge (fusão), desses commits.
+
+Não há problema em ter outros commits no repositório, o Git tenta fazer a sincronização automática. Porém, se houver um conflito no mesmo arquivo e na mesma linha, ele não consegue distinguir qual versão manter. Nem eu nem a Gabi poderemos decidir qual mudança será mantida.
+
+O Git não escolhe uma versão, ele nos deixa decidir qual versão deve ser mantida. Por exemplo, no arquivo app.js ele mostra que uma pessoa desenvolvedora alterou o numeroLimite para 30 e outra alterou para 40. É nossa responsabilidade resolver.
+
+Gabi, em seguida entenderemos como resolver o conflito e comunicar ao Git que o conflito foi resolvido e que está tudo certo no código.
+
+@@03
+Resolvendo conflitos
+
+Transcrição
+
+Gabrielle: Tentamos realizar o Pull das alterações que estavam no nosso repositório remoto, para trazer essas alterações para o computador de Rodrigo, mas ocorreu um conflito. E agora aprenderemos a solucionar esse conflito.
+Rodrigo: Estou com o arquivo index.html aberto com as marcações de conflito no texto do parágrafo, detectados pelo Git após eu fazer o Pull dos commits. O Git já detectou que houve um conflito e até mostra um botão azul, no canto inferior direito da tela, escrito "Resolve in Merge Editor". Se clicarmos nesse botão, poderemos resolver o conflito em uma ferramenta de edição de conflitos.
+
+Você pode usar essa opção, então deixaremos um Para Saber Mais explicando como isso funciona. Outra opção é editar manualmente os arquivos. Vamos entender manualmente os arquivos para aprendermos como o Git nos sinaliza esse conflito.
+
+Ao abrirmos os dois arquivos que apresentaram conflitos, que aparecem na lista "Marge Changes" dentro da aba de Controle de Origem, à esquerda. Eles têm um símbolo de exclamação na cor vermelha no canto direito do nome do arquivo, para indicar "Há um conflito neste arquivo", e isso acontece nos dois.
+
+Ao abrirmos o app.js, ele fez uma marcação na linha onde declaramos a numeroLimite. Tem uma marcação em verde e outra em azul, basicamente para indicar a mudança de cada repositório.
+
+A que eu fiz está em verde, inclusive com uma indicação de que é a mudança atual, ou seja, o valor é 30. O outro commit que eu tentei baixar está destacado em azul. A outra pessoa mudou a mesma linha, só que o valor que ela colocou foi 40.
+
+Ele coloca sinais de maior que (>) ou menor que (<) antes dos nomes dos commits apenas para indicar visualmente no código onde está o conflito. Então vamos editar o arquivo, Gabi. Excluiremos essas linhas e definiremos qual das duas mudanças é a que será consolidada de fato.
+
+Gabrielle: Isso acontece muito no dia a dia de uma pessoa desenvolvedora. Às vezes ocorre conflito em várias partes do código e você vai precisar conversar com as pessoas da sua equipe para alinhar qual será a alteração que será mantida e prosseguir com essa decisão.
+
+Rodrigo: Vamos fazer isso agora. Vamos imaginar que eu e Gabi olhamos o log, e descobri que fiz uma alteração que deu conflito com o commit da Gabi. Conversei com ela e nós concordamos que Gabi ganhou. Perdi no par ou ímpar, então a mudança de 40 será a vencedora.
+
+Como que eu digo para o Git: "ignore essa linha do 30 e considera a de 40", ou seja, desconsidera a minha e considera a do commit da Gabi? Podemos editar manualmente, excluindo essas linhas que geram conflito, assim como os comentários de origem do commit
+
+Código app.js antes:
+let listaDeNumerosSorteados = [];
+<<<<<<< HEAD (Current Change)
+let numeroLimite = 30;
+=======
+let numeroLimite = 40;
+>>>>>>> ea448839319bea1248fFace4857aa327483a1b96 (Incoming Change)
+let numeroSecreto = gerarNumeroAleatorio();
+let tentativas = 1;
+
+//código omitido
+COPIAR CÓDIGO
+Código app.js depois:
+let listaDeNumerosSorteados = [];
+let numeroLimite = 40;
+let numeroSecreto = gerarNumeroAleatorio();
+let tentativas = 1;
+
+//código omitido
+COPIAR CÓDIGO
+Apagamos aquelas linhas, deixamos qual é a versão final, salvamos o arquivo. A mesma coisa no index.html. Ele indica a linha que está causando um conflito, então eu vou apagar o meu, que era o 30, e as linhas marcação do Git. Ficou apenas a Escolha número entre 1 e 40.
+
+Código index.html antes:
+<!-- código omitido -->
+<div class="container__texto">
+        <h1>Adivinhe o <span class="container__texto-azul">numero secreto</span></h1>
+<<<<<<< HEAD (Current Change)
+        <p class="texto__paragrafo">Escolha um número entre 1 e 30</p>
+=======
+        <p class="texto__paragrafo">Escolha um número entre 1 e 40</p>
+>>>>>>> ea448839319bea1248fFace4857aa327483a1b96 (Incoming Change)
+</div>
+<!-- código omitido -->
+COPIAR CÓDIGO
+Código index.html depois:
+<!-- código omitido -->
+<div class="container__texto">
+        <h1>Adivinhe o <span class="container__texto-azul">numero secreto</span></h1>
+        <p class="texto__paragrafo">Escolha um número entre 1 e 40</p>
+</div>
+<!-- código omitido -->
+COPIAR CÓDIGO
+Salvei os dois arquivos após corrigi-los e apagar aquelas marcações do Git. Já está pronto, Gabi? O Git já sabe que o conflito foi resolvido?
+
+Gabrielle: Precisamos agora realizar um commit que vai subir para o GitHub essa correção desse conflito que tivemos.
+
+Rodrigo: Não basta apenas editarmos o arquivo e fazermos o ajuste. Nós precisamos avisar para o Git que o conflito foi resolvido. E esse registro, como foi mencionado pela Gabriela, é feito com um novo commit no projeto.
+
+Então, após alterarmos os arquivos, clicaremos no ícone do Git, na barra lateral esquerda do VS Code. Será necessário fazer um novo commit, então clicaremos no botão Stage Changes, que tem o ícone "+" para adicionarmos os dois arquivos ao commit.
+
+Após adicionarmos os dois arquivos, uma mensagem pré-definida é apresentada. A mensagem é: "Merge branch 'main' of [link do repositório do GitHub]". Podemos manter essa mensagem ou apagar e digitar outro texto, se desejarmos. Deixarei essa mensagem padrão.
+
+Em seguida, clicaremos no botão "Commit". Agora o Git entendeu que nós resolvemos o conflito e aquele commit é o registro da resolução do conflito.
+
+Atualmente, meu repositório local está atualizado, porém o botão "Commit" virou o botão de sincronização, pois esse novo commit não foi enviado para o GitHub. Portanto, nosso próximo passo é clicarmos nesse botão para fazermos a sincronização.
+
+Gabrielle: Agora nós enviaremos tanto o commit que o Rodrigo realizou, representando aquela alteração, quanto o commit de correção desse conflito.
+
+Rodrigo: Enviamos esse commit para o GitHub. Em princípio, a operação foi realizada sem problemas, mas vamos checar no site. Então, acessaremos a página do repositório no GitHub. Reparamos que a mensagem do último commit é justamente falando da mesclagem que resolve o conflito.
+
+O repositório possui agora seis commits. Ao clicarmos no link dos commits, no canto superior direito, acessamos o histórico e notamos que ele mostra o commit de alteração do limite para 40, feita pela Gabriela. Também mostra o meu commit, representado pelo número 30, e o commit que resolveu esse conflito dos dois commits anteriores.
+
+Então, é assim que funciona quando há um conflito: o Git marca no código, nós resolvemos o conflito fazendo um novo commit, e então tudo fica em ordem no repositório, certo?
+
+Gabrielle: Exatamente. E às vezes, durante essa resolução de conflitos, partes do meu código e também partes do seu código serão mantidas, isso dependerá muito da situação.
+
+Rodrigo: Com isso, aprendemos a lidar com um conflito. Na próxima aula aprenderemos sobre outras situações e recursos importantes do Git. O foco será no controle de versão, no histórico dos commits, e não somente nessa parte de colaboração com o GitHub.
+
+@@04
+Resolvendo conflitos com Visual Studio Code Merge Editor
+
+Quando você está trabalhando em um projeto grande, principalmente se muitas pessoas estão envolvidas, é comum aparecerem os chamados "conflitos". Mas o que são esses conflitos?
+Imagine que o projeto é um grande quebra-cabeça e cada pessoa está trabalhando em uma parte dele. Se duas pessoas tentarem encaixar peças diferentes no mesmo lugar, surge um conflito. No mundo do desenvolvimento de software, isso ocorre quando duas pessoas editam o mesmo pedaço de código de formas diferentes.
+
+Há várias formas de resolver conflitos, podemos utilizar a linha de comando ou o próprio Visual Studio Code. O editor de código fornece mais de uma forma para resolver conflitos de mesclagem entre o código local (o que está na sua máquina) e o remoto(o que está no github, por exemplo).
+
+Uma possibilidade é utilizar a ferramenta “Merge Editor”. Vamos conferir seu funcionamento?
+
+Resolvendo conflitos no Merge Editor
+No exemplo a seguir, nós temos duas versões de um código na branch main: uma no repositório do github e outra modificação diferente no ambiente local. Ao realizarmos o git -push para a branch main, ocorreu um conflito e precisamos resolvê-lo para que a atualização suba para o repositório no github corretamente, como a imagem nos apresenta:
+
+ Para solucionarmos o problema, clicamos na opção “Resolve in Merge Editor”, como no print abaixo:
+
+Captura de tela que apresenta um botão com o texto "Resolve in Merge Editor"
+
+Após o clique, somos redirecionados para outra aba que apresenta as modificações no arquivo, vamos entender o que cada opção significa:
+
+Uma captura de tela representando o editor de mesclagem, uma ferramenta usada para resolver conflitos e mesclar versões de código de maneira integrada. Temos uma nova aba chamada "merging: index.html". Há a divisão da tela em três partes: Incoming, Current, Result. No canto inferior direito da tela há um botão "complete merge"
+
+A tela do Visual Studio Code está dividida em três partes:
+
+Incoming (remoto): modificações que chegam do repositório remoto.
+Current (local): modificações locais.
+Result (resultado): resultado do merge, ou seja, a resolução dos conflitos de mesclagem. É o estado atual do arquivo.
+Os quadrados na cor amarela em volta do código no campo “Incoming” e “Current” são marcadores de conflito: exibem o conteúdo que apresenta conflito no arquivo.
+Campo Incoming
+-> No campo “Incoming”, acima da linha de código dos marcadores de conflito no campo há outras opções que resultam na alteração do código atual:
+
+Accept Incoming: aceita modificações oriundas do remoto
+Captura de tela com o campo Incoming, Current, e o Result com o código do campo Incoming
+
+Accept Combination Incoming First: realiza a combinação com as linhas do código do repositório remoto no topo.
+Captura de tela com o campo Incoming, Current, e o Result com o código do campo Incoming e Current respectivamente
+
+Ignore: ignora as modificações.
+Campo Current
+-> O campo “Current” trabalha com as modificações locais do documento.
+
+Accept Current: Aceita a modificação local no resultado do documento
+Accept combination Current First: Aceita a combinação local + remoto. Nos resultados a linha de código com a tag <h2> fica antes de <h1>, comprovando que o código local é inserido primeiro que o remoto.
+Captura de tela com o campo Incoming, Current, e o Result com o código do campo Current e Incoming respectivamente
+
+Ignore: ignora as modificações no resultado no final.
+Após selecionarmos a opção com o resultado desejado, devemos:
+
+Salvar o arquivo
+Clicar no botão “complete Merge”
+Realizar o commit das modificações
+Sincronizar as modificações realizando o push.
+Para saber mais:
+Como o Visual Studio facilita o controle de versão com o Git
+Como resolver conflitos de mesclagem no Visual Studio
+Um guia muito útil para mesclar conflitos - em Inglês
+
+@@05
+Conflitos em Git
+
+Você está trabalhando no projeto de desenvolvimento de software "TechPro", onde toda a equipe utiliza Git para controle de versão. Durante a colaboração, um conflito surgiu no arquivo main.js devido a alterações feitas por diferentes membros do time. Agora, é necessário resolver esse conflito para continuar o desenvolvimento sem problemas.
+Escolha a alternativa que indica a maneira de resolver tal conflito:
+
+Executar o comando git conflict main.js para resolver o conflito.
+ 
+Alternativa incorreta
+Apagar o arquivo main.js e criá-lo novamente.
+ 
+Alternativa incorreta
+Executar o comando git pull para resolver o conflito.
+ 
+Alternativa incorreta
+Editar o arquivo e realizar um novo commit.
+ 
+A resolução de conflitos no Git envolve a edição manual do arquivo conflitante para resolver as diferenças entre as versões conflitantes. Depois de editar e resolver o conflito, você deve usar git add para adicionar as mudanças resolvidas e, em seguida, executar git commit para confirmar as alterações. Isso registra a resolução do conflito no histórico de commits do repositório.
+
+@@06
+Faça como eu fiz: utilizando o Git na IDE
+
+Agora é com você! Faça alguma alteração no projeto e a envie para o repositório remoto no GitHub usando a integração do Git no VS Code ao invés do terminal, conforme realizado na aula.
+
+Opinião do instrutor
+
+Com o seu projeto aberto no VS Code, altere alguma parte do código e salve o projeto.
+Clique no botão lateral esquerdo de Source Control para abrir a integração Git no VS Code. Lá será mostrado quais arquivos contém alterações.
+
+Adicione cada um dos arquivos, clicando no botão de + ao lado do nome de cada um.
+
+Escreva uma mensagem de commit, no devido campo correspondente, descrevendo a alteração feita. Por fim, clique no botão Sync Changes para enviar as alterações para o repositório remoto no GitHub.
+
+@@07
+Desafios: hora da prática
+
+Conflitos em diferentes versões no código é algo comum no cotidiano da pessoa desenvolvedora e é essencial saber como resolver quando esses conflitos aparecem. A ideia do próximo desafio é gerar e resolver um conflito entre um repositório remoto e local, vamos praticar com os desafios não obrigatórios?
+Desafios
+
+Crie um novo repositório local
+Adicione o repositório remoto criado nos exercícios anteriores ao seu repositório local.
+Faça uma alteração no repositório local e envie para o remoto.
+Resolva os conflitos manualmente, escolhendo quais alterações serão mantidas
+Realize um commit para registrar a resolução do conflito.
+Verifique quais arquivos foram adicionados
+Sincronize o repositório local com o repositório remoto no GitHub.
+Caso precise de ajuda, opções de solução das atividades estarão disponíveis na seção “Opinião da pessoa instrutora”.
+
+Opinião do instrutor
+
+Desafio 1: Criar um Novo Repositório Local
+Abra o terminal.
+Navegue até o diretório onde deseja criar o novo repositório.
+Execute git init para inicializar um novo repositório.
+Desafio 2: Adicionar o Repositório Remoto Criado Anteriormente
+
+Execute git remote add <nome-remoto> <url-do-repositorio-remoto> para adicionar o repositório remoto ao seu local.
+Desafio 3: Faça uma Alteração no Repositório Local e Envie para o Remoto
+
+Abra um arquivo existente ou crie um novo no seu repositório local.
+Faça as alterações desejadas.
+Execute git add . para adicionar as alterações.
+Em seguida, execute git commit -m "Alteração no repositório local" para realizar o commit.
+Utilize git push <nome-remoto> main para enviar as alterações para o repositório remoto.
+Desafio 4: Resolvendo Conflitos Manualmente
+
+No GitHub, faça uma alteração no mesmo arquivo que foi modificado localmente.
+Execute git pull <nome-remoto> main no seu terminal para trazer as alterações remotas.
+O Git indicará um conflito. Abra o arquivo afetado e resolva manualmente, escolhendo quais alterações manterá.
+Sugestão: você pode seguir os passos demonstrados no vídeo Resolvendo conflitos
+Desafio 5: Realize um Commit para Registrar a Resolução do Conflito
+
+Após resolver manualmente, execute git add . para adicionar as alterações ao staged area.
+Em seguida, execute git commit -m "Resolver conflito manualmente de ‘descrição do conflito’" para registrar a resolução do conflito.
+Desafio 6: Verifique Quais Arquivos Foram Adicionados
+
+Execute git status para verificar se há alterações pendentes.
+Se quiser ver as diferenças, utilize git diff.
+Conheça mais sobre o comando git diff na documentação git diff
+Desafio 7: Sincronize o Repositório Local com o Repositório Remoto no GitHub
+
+Execute git push <nome-remoto> main para enviar as alterações, incluindo a resolução de conflitos, para o repositório remoto no GitHub.
+Verifique o histórico de commits no GitHub e confirme que o conflito foi resolvido corretamente.
+Parabéns! Você concluiu o desafio de trabalhar com conflitos no Git, resolvendo manualmente e sincronizando seu repositório local com o remoto. Este processo é crucial ao colaborar em projetos com outros desenvolvedores.
+
+@@08
+O que aprendemos?
+
+Nessa aula, você aprendeu como:
+Utilizar o Git pela integração do VSCode, ao invés de utilizar pelo terminal;
+Entender como acontecem conflitos de códigos em commits que modificam um mesmo arquivo, feitos por pessoas distintas;
+O Git sinaliza no código um conflito, via marcações visuais;
+Resolver um conflito manualmente, editando o arquivo e realizando um commit que marca o conflito como resolvido.
+
