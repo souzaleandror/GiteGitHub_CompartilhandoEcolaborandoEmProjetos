@@ -2098,3 +2098,518 @@ Nessa aula, você aprendeu como:
 Reverter mudanças de um commit de maneira automática, utilizando o comando git revert;
 Apagar um determinado commit do histórico, desfazendo automaticamente suas mudanças no código, utilizando o comando git reset;
 Modificar o último commit efetuado, alterando sua mensagem ou modificações no código, utilizando o comando git commit com o parâmetro --amend.
+
+#03/11/2025
+
+@05-Mais recursos
+
+@@01
+Readme do repositório
+
+Transcrição
+
+Gabrielle: Já aprendemos diversas informações relevantes sobre o uso do Git e do GitHub!
+Durante nosso trabalho nesse projeto, entendemos do que se trata e o que o código realiza. Porém, caso outra pessoa que não faça parte de nossa equipe entre nesse repositório, não conseguirá compreender do que se trata esse projeto.
+
+É possível documentar e explicar o que o projeto realiza? Quais tecnologias utilizamos e, enfim, fornecer um resumo sobre esse código?
+
+Rodrigo: Ótima questão, Gabi! No futuro, outra pessoa pode ingressar no time ou podemos decidir transformar esse projeto em open source (código aberto) e permitir que qualquer pessoa colabore.
+
+Nessas situações, essas pessoas não conseguirão discernir quais são os arquivos e o que cada um deles faz, pois não há um contexto para o projeto além do código.
+
+Acessando a página do repositório no GitHub, parte inferior, aparece uma mensagem indicando precisamente isso:
+
+Help people interested in this repository understand your project by adding a README
+Portanto, está perguntando se não gostaríamos de informar às outras pessoas do que se trata esse projeto. À frente, há um botão chamado "Adicionar um README".
+
+Existe esse conceito chamado README, que significa "Leia-me" em inglês. Ele atua como uma documentação. Portanto, é comum encontrarmos repositórios do GitHub que possuem esse arquivo como uma documentação, mas ao invés de usar o Word ou um PDF, o arquivo fica dentro do repositório em si. Dessa forma, a documentação permanece próxima ao código.
+
+O GitHub tem um tratamento especial para isso. Se identifica que há um arquivo com esse nome no repositório, o texto é exibido integralmente na parte inferior. É possível formatá-lo utilizando HTML e o formato Markdown.
+
+O que acha de criarmos esse arquivo README e documentarmos nosso repositório?
+
+Gabrielle: Vamos lá!
+
+Rodrigo: Podemos fazer isso pelo Visual Studio Code. Basta criar um arquivo com esse nome, "README", em maiúsculo, e a extensão .md de Markdown. Podemos fazer isso diretamente na IDE ou pelo próprio site do GitHub. Como estamos com o GitHub aberto, faremos por aqui.
+
+Ao clicarmos o botão "Add a README", ele abrirá um formulário, como se estivéssemos criando o arquivo dentro do GitHub. Perceba que, no topo da página, ele já inseriu o nome do arquivo, README.md, e há um campo para digitarmos nossa documentação.
+
+Nesse campo, precisamos escrever o que é o projeto, quais são as tecnologias, quem são as pessoas que trabalham, podendo ainda formatar esse texto, colocá-lo em negrito, itálico, adicionar fotos, entre outras opções.
+
+Também é possível editar o código e há um botão chamado "Preview" para pré-visualização do texto escrito até o momento. No momento, só temos o texto "numero-secreto", mas a ideia é apagar isso e começar a descrever o projeto.
+
+Podemos usar tags HTML para quebrar linhas, colocar tabelas, fazer alinhamentos, entre outras formatações. Também podemos utilizar o próprio Markdown, que é uma linguagem de marcação. Inclusive, vamos disponibilizar um Para Saber Mais, explicando como fazer formatações com Markdown e com HTML.
+
+Para não perdermos muito tempo, digitando do zero, já preparamos um README. Vamos apenas colá-lo.
+
+<h1>Jogo do número secreto</h1>
+
+<h2>�� Sobre</h2>
+<p>Projeto utilizado nos cursos de lógica de programação da Alura.</p>
+
+## �� Tecnologias
+<div>
+  <img src="https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white">
+  <img src="https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+</div>
+
+// Código omitido. 
+COPIAR CÓDIGO
+Para consultar o arquivo completo, basta acessar o GitHub do curso
+Ele contém algumas tags HTML e algumas formatações do Markdown. Vamos pré-visualizá-lo apertando "Preview".
+
+Print da pré-visualização da documentação. Fundo preto e letras brancas. O título é "Jogo do número secreto" e está em destaque devido ao tamanho da fonte, maior que nos demais textos. Abaixo, há um campo "Sobre", com a descrição do projeto: "Projeto utilizado nos cursos de lógica de programação da Alua". Depois, temos o campo "Tecnologias": "HTML"; "css"; e "JAVASCRIPT". O último campo é "Time", com as fotos e nomes das pessoas que integram o time: Gabrielle Ribeiro e Rodrigo Caneppele.
+
+A documentação apresenta o nome do projeto, um breve resumo do que é o projeto, quais são as tecnologias, perfil do time, entre outras coisas.
+
+Gabrielle: A documentação do nosso projeto ficou muito bonita!
+
+Rodrigo: Passamos o texto no campo "Edit", clicamos em "Preview", visualizamos e gostamos do resultado. Está provado, Gabi?
+
+Gabrielle: Aprovado! Ótimo!
+
+Rodrigo: Como podemos sinalizar ao GitHub para criar esse arquivo? Precisamos lembrar que se trata de um arquivo novo que estamos adicionando ao projeto. Vamos ter que fazer um commit dele. É possível fazer isso diretamente na interface do GitHub.
+
+No canto superior direito da tela, apareceu um botão: "Commit changes". Ele gerará um commit criando esse novo arquivo. Ao selecioná-lo, aparecerá uma pequena janela com um campo para digitarmos a mensagem do commit. Há outro campo opcional, caso queiramos descrever com mais detalhes esse commit.
+
+Ele nos pergunta se queremos fazer esse commit na "main branch" (principal). Manteremos essa opção e clicaremos no botão "Commit".
+
+Um novo commit foi criado. Já é possível visualizar que o último commit foi o nosso e a mensagem "create README.md". Agora, quando entramos no repositório, o GitHub detecta que existe um arquivo README.
+
+Abaixo da lista de diretórios e arquivos do projeto, ele já exibe automaticamente a documentação. Nosso projeto está documentado, Gabi.
+
+Gabrielle: Maravilha! Agora, quando alguém quiser colaborar com o nosso projeto, fica bem mais fácil entender o que está acontecendo dentro do nosso repositório, certo?
+
+Rodrigo: Ótimo! Disponibilizaremos outro Para saber mais com dicas de como formatar esse README para torná-lo agradável, repleto de informações sobre o projeto, seguindo o padrão das empresas e dos projetos de tecnologia.
+
+Gabrielle: Muito bem, Rodrigo! Surgiu outra dúvida em relação ao Git e GitHub. Quando estamos trabalhando em um projeto no nosso computador, a tecnologia que estamos usando naquele projeto pode gerar alguns arquivos de cache, e talvez não seja tão interessante enviá-los para o GitHub.
+
+Podemos até ter arquivos com informações confidenciais. Será que há alguma forma de limitar o que subimos para o GitHub e o que fica apenas no nosso computador?
+
+Rodrigo: Muito importante! Alguns arquivos estão na pasta do projeto, mas não queremos enviá-los para o GitHub, como arquivos de senha. Na sequência, entenderemos como esconder determinados arquivos do repositório.
+
+@@02
+Para saber mais: formatação com markdown
+ PRÓXIMA ATIVIDADE
+
+Vimos que para criar um README, usamos a linguagem de marcação de texto Markdown.
+Caso você queira aprender mais sobre esse tipo de formatação para criar READMEs incríveis, temos aqui na Alura o artigo Markdown: como trabalhar com essa linguagem de markup?.
+
+Você também pode acessar a documentação a seguir que mostra os principais códigos em Markdown: Markdown Quick Reference Cheat Sheet.
+
+https://www.alura.com.br/artigos/como-trabalhar-com-markdown
+
+https://wordpress.com/support/markdown-quick-reference/
+
+@@03
+Para saber mais: melhorando o README
+ PRÓXIMA ATIVIDADE
+
+O README é uma parte importante dos repositórios do Github. Nele serão documentadas informações relevantes do projeto para que pessoas que ainda não o conhecem possam entender melhor os seus detalhes.
+Assim, caso você queira saber como criar um bom README para os seus repositórios, você pode ler o artigo Como escrever um README incrível no seu Github.
+
+https://www.alura.com.br/artigos/escrever-bom-readme
+
+@@04
+Para saber mais: README para seu perfil no GitHub
+ PRÓXIMA ATIVIDADE
+
+No GitHub você pode personalizar seu perfil com um README especial para mostrar informações que você considera importante que outras pessoas saibam sobre você, como seu trabalho ou estudos, projetos que você faz parte, seus dados de contato, etc.
+Um exemplo pode ser visto a seguir:
+
+Print de perfil do Github. Mostra um README especial, com informações sobre estudos, trabalho, interesses em tecnologia, linguagens de programação usadas e dados para contato.
+
+Para criar o seu próprio README, você pode ler o artigo Como criar um README para o seu perfil do GitHub.
+
+@@05
+Ignorando arquivos no repositório
+
+Transcrição
+
+Gabrielle: Já sabemos que nem sempre é adequado enviarmos para o GitHub todos os arquivos e diretórios do nosso projeto local.
+Como podemos fazer para que o GitHub ignore esses arquivos quando realizarmos o upload?
+Rodrigo: Boa pergunta, Gabi! Vamos voltar para o Visual Studio Code.
+
+No caso do nosso projeto, criamos o repositório na pasta "NUMERO-SECRETO", que é a pasta principal do projeto. Todos os arquivos contidos nela, como style.css, index.html, app.js, até mesmo os diretórios, como a pasta .img e todos os arquivos internos dela, serão rastreados pelo Git quando usamos o comando git add..
+
+No entanto, pode haver uma pasta ou arquivo específico que desejamos que o Git ignore. Talvez seja um arquivo ou diretório necessário para a execução do projeto localmente, mas que não faz sentido compartilharmos com outras pessoas. Cada uma terá seu arquivo ou diretório específico, portanto, não queremos enviar para o GitHub.
+
+Porém, se adotarmos essa estratégia, teríamos que ter cuidado ao realizar um commit para não usar git add., caso contrário, o Git incluiria automaticamente o diretório que gostaríamos de ignorar. E então, teríamos que ficar adicionando individualmente cada arquivo, o que não seria nada produtivo.
+
+Gabrielle: Isso é verdade, também corremos o risco de nos confundirmos, esquecermos qual arquivo deve ser ignorado e acabar enviando por engano.
+
+Rodrigo: Sim. Seria muito mais fácil se o próprio Git pudesse fazer isso automaticamente. Continuaríamos usando git add., mas o Git saberia que deveria ignorar alguns arquivos ou pastas específicos.
+
+Existe um recurso que nos permite criar um arquivo para informar ao Git quais diretórios e arquivos do projeto ele deverá ignorar. Esse arquivo é chamado de .gitignore. Podemos criar um arquivo com esse nome no nosso projeto.
+
+No Visual Studio Code, criaremos um novo arquivo. O nome desse arquivo deve ser .gitignore, com um ponto no início, pois será um arquivo oculto. Após criar o arquivo .gitignore, incluiremos nele quais arquivos e diretórios do projeto queremos ignorar.
+
+Por exemplo, vamos supor que temos uma pasta chamada temp/ no projeto, que é uma pasta temporária, com arquivos temporários. Estamos adicionando essa pasta no arquivo .gitgnore para que o Git ignore esse arquivo. Se tivermos outros arquivos e diretórios, cada um deles estaria separado por linhas.
+
+Portanto, na linha abaixo, poderíamos colocar arquivo.txt passando um nome específico ou padrão, por exemplo, *.css. Nós usaremos apenas o temp/. Com isso, estamos dizendo, basicamente, para o Git: "Ignore a pasta temp do projeto".
+
+Por fim, vamos fazer um teste, Gabi?
+
+Gabrielle: Claro, Rodrigo! Então, vamos criar uma pasta com o nome temp. Dentro dela, criaremos um arquivo teste.txt e adicionaremos um texto qualquer: "nao deveria ir para o git".
+
+Agora, criamos o gitignore e adicionamos a pasta temp (com o arquivo teste.txt) para ser ignorada. Em teoria, se fizermos um commit, o Git deverá ignorar esse arquivo.
+
+Vamos fazer uma mudança no index.html. No trecho de código a seguir, substituiremos a palavra "Adivinhe" por "Descubra":
+
+// Código omitido. 
+
+<h1>Descubra o <span class="container__texto-azul">numero secreto</span>
+
+// Código omitido. 
+COPIAR CÓDIGO
+Realizamos uma alteração no index.html e queremos efetuar o commit dessa mudança. Vamos verificar se ele irá ignorar a pasta temp e levar apenas a alteração do index.
+
+Acessaremos o atalho do Git no Visual Studio Code para fazer um novo commit. Adicionaremos o index.html e o .gitignore, que precisa ser enviado ao repositório. Também colocaremos uma mensagem: "mudanças no título e gitignore" e apertaremos o botão de "Commit".
+
+Após isso, apertaremos o botão "Sync Chages" (sincronizar), para enviarmos ao GitHub e aparentemente deu certo. Na sequência, verificaremos no site do GitHub se a pasta foi realmente ignorada.
+
+Ele mostrou o arquivo .gitignore, mas não trouxe a pasta temp, somente a pasta img. Deu certo!
+
+Gabrielle: Ficou bem legal! Acredito que exista algum recurso ou algo que nos auxilie a escrever esse .gitignore, já que essa é uma ferramenta muito comum no dia a dia das pessoas desenvolvedoras, certo?
+
+Rodrigo: Isso varia muito de linguagem para linguagem. Por exemplo,as aplicações em Java têm os arquivos .class, .jar, que normalmente não são inseridos no repositório.
+
+Em PHP, teremos outros arquivos, assim como em Python, Hornet, cada linguagem tem seus arquivos temporários - arquivos de compilação - e não faz sentido enviá-los para o repositório.
+
+Ao invés de criarmos o .gitignore manualmente, precisando lembrar quais são os arquivos e diretórios daquela linguagem, daquela tecnologia, existem sites que nos auxiliam nessa tarefa. Existem sites geradores de .gitignore para cada tecnologia.
+
+Um desses auxiliadores é o site gitignore.io, que é um site utilitário. Nele, indicamos a tecnologia ou a linguagem de programação, por exemplo, Java, e apertamos o botão "criar". Com isso, ele retorna como seria um .gitignore para um projeto com Java.
+
+Ele fornece o arquivo completo, inclusive, listando *.class, *.log, .ctxt, e o diretório temp, .jar. Para o Java, esses são os arquivos a serem ignorados.
+
+# Created by https://www.toptal.com/developers/gitignore/api/java 
+# Edit at https://www.toptal.com/developers/gitignore?templates-java
+
+### Java ###
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+#Mobile Tools for Java (J2ME) 
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid"
+replay_pid*
+
+#End of https://www.toptal.com/developers/gitignore/api/java
+COPIAR CÓDIGO
+Agora, vamos substituir a linguagem Java para Django, que é uma tecnologia do Python. Neste caso, temos outros arquivos e diretórios para ignorar. Essa ferramenta é muito útil, pois já disponibiliza um .gitignore pronto, bastando apenas copiá-lo e colá-lo em nosso projeto.
+
+Gabrielle: Aprendemos muitas coisas interessantes e nosso projeto está bem legal, mas teve um trecho de código que gostei bastante e queria compartilhar com as pessoas só esse pedaço do código. Será que preciso criar um novo repositório para colocar só este trecho?
+
+Rodrigo: Caso você queira compartilhar apenas um trecho de código, não um projeto completo, o GitHub também tem uma ferramenta para isso. Em seguida, entenderemos como ela funciona.
+
+@@06
+Compartilhando códigos com Gist
+
+Transcrição
+
+Gabrielle: Quero compartilhar apenas um trecho do nosso projeto e não ele inteiro. Então, Rodrigo, você me disse que eu não preciso criar um novo repositório, porque existe uma ferramenta que pode me auxiliar nisso.
+Rodrigo: Exato! O próprio GitHub oferece um recurso para quando desejamos compartilhar trechos de códigos com outras pessoas, sem a necessidade de criar um repositório e realizar todo o processo de commits que realizamos.
+
+Abrindo o site do GitHub, no ícone de "+ (mais)", no canto superior direito, além da opção de criar um novo repositório, encontramos outras opções. Dentre elas, temos uma chamada "New Gist".
+
+Ao selecioná-la, seremos direcionados para um formulário. A ferramenta GitHub Gist foi desenvolvida pelo próprio GitHub para compartilhamento de códigos. A descrição inclusive menciona "compartilhe códigos de maneira instantânea, comentários ou trechos de códigos pontualmente".
+
+Nós podemos criar um "Gist" e, assim que a criação for realizada, será gerada uma URL que copiaremos e compartilharemos com outras pessoas. Vamos compartilhar um trecho do nosso projeto?
+
+Então, vamos voltar para o Visual Studio Code. Vamos supor que queremos compartilhar a biblioteca que está sendo utilizada no projeto para a leitura dos trechos da página. Enfim, queremos mostrar para as pessoas que usamos uma biblioteca de inteligência artificial para ler e interpretar o site.
+
+Seria, portanto, a tag script localizada no nosso arquivo index.html.
+
+ <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+COPIAR CÓDIGO
+Vamos copiar esse trecho de código. Agora, voltando para o formulário do Gist, podemos inserir uma descrição, ou seja, um texto explicando o que ele é: "Código de leitura de tela".
+
+Abaixo deste campo, há outro para incluir arquivos. Nele, é possível compartilhar um ou vários arquivos de forma separada, a ferramenta permite isso. Precisamos definir o nome do arquivo: index.html e colar a tag script no campo abaixo.
+
+Ao final da tela, existe uma opção para adicionar arquivos. Se quisermos compartilhar outro arquivo, podemos adicionar usando este botão "Add file". Então, vamos selecioná-lo. Ele abriu um novo formulário para incluirmos um novo arquivo. Vamos incluir o app.js.
+
+Retornando ao nosso código, compartilharemos também uma linha do nosso arquivo app.js, onde configuramos a biblioteca para utilizar a voz do Google na leitura:
+
+responsiveVoice.speak(texto, 'Brazilian Portuguese Female', {rate:1.2});
+COPIAR CÓDIGO
+Copiaremos esse trecho de código e colaremos no Gist. Pronto! São dois arquivos, duas linhas de código.
+
+Ao final da página, existe um botão verde, "Create secret gist", que serve para criarmos o Gist. E ele também tem a opção de ser um Gist público ou secreto. No nosso caso, vai ser secreto ou vai ser público?
+
+Gabrielle: Vai ser público. Essa biblioteca de voz é uma ferramenta bem legal. Então, vamos torná-lo público.
+
+Rodrigo: Funciona da mesma forma que o repositório. Se for público, pessoas podem acessar os Gists que criamos. Se for privado, somente a pessoa responsável pelo arquivo pode compartilhá-lo com outras pessoas. O Gist privado não aparece na página do usuário no GitHub.
+
+O Gist público foi criado! O endereço que está na barra de endereços do navegador é o que compartilharemos com outras pessoas. Vamos testar e verificar se está funcional mesmo.
+
+Abriremos uma janela anônima, sem estarmos logados no GitHub, e colaremos a URL. Deste modo, será possível visualizar como a informação aparecerá para as pessoas.
+
+O nome da pessoa que criou o Gist está sendo apresentado, juntamente com a descrição, "código de leitura de tela", além dos arquivos e dos trechos de código que compartilhamos em cada um dos arquivos.
+
+Assim, Gabi, você pode compartilhar trechos de código instantaneamente, sem a necessidade de criar um repositório do zero, criar arquivos, fazer commits.
+
+Gabrielle: Esse recurso é bastante interessante! Agora, compartilharei esse link com todas as pessoas. Também vou usar essa ferramenta para compartilhar todos os meus códigos interessantes que eu criar.
+
+@@07
+Para saber mais: problemas com o responsiveVoice
+ PRÓXIMA ATIVIDADE
+
+Em uma atividade do curso anterior, vimos que estavam acontecendo alguns erros com a biblioteca Responsive Voice. Na atividade, foi fornecido um código alternativo para ser utilizado no lugar da biblioteca. Assim, você pode criar um gist com esse código alternativo.
+Assim, seu Gist terá o seguinte código no arquivo app.js:
+
+if ('speechSynthesis' in window) {
+        let utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = 'pt-BR';
+        utterance.rate = 1.2;
+        window.speechSynthesis.speak(utterance);
+} else {
+    console.log("Web Speech API não suportada neste navegador.");
+}
+COPIAR CÓDIGO
+Repare que teremos apenas o arquivo app.js no Gist, uma vez que, para usar a API Web Speech não precisar importar nenhum script no arquivo HTML.
+
+Agora você pode compartilhar o novo código!
+
+https://cursos.alura.com.br/course/logica-programacao-funcoes-listas/task/173873
+
+@@08
+Para saber mais: branches e merges
+ PRÓXIMA ATIVIDADE
+
+Neste curso, citamos que no Git existem dois recursos chamados branch e merge. Entretanto, nesse curso de Git, tais assuntos não serão abordados.
+Caso você queira se aprofundar nesses temas, temos aqui na Alura o curso de Git e GitHub: dominando controle de versão de código que te ensinará esses e outros assuntos.
+
+Obs: É valido informar que para um melhor aproveitamento do curso, é necessário realizar antes os cursos indicados na sua lista de pré-requisitos.
+
+https://cursos.alura.com.br/course/git-github-dominando-controle-versao-codigo
+
+@@09
+Benefícios do README no repositório
+ PRÓXIMA ATIVIDADE
+
+Você está colaborando em um projeto de código aberto chamado "TechLearn", uma plataforma de aprendizado online. Você foi designado para adicionar um README ao repositório do projeto. No entanto, algumas pessoas do seu time estão questionando a importância de ter um README.
+Escolha a alternativa que destaca os benefícios de incluir um README em um repositório:
+
+ernativa que destaca os benefícios de incluir um README em um repositório:
+
+Alternativa incorreta
+Um README fornece um local conveniente para armazenar senhas do projeto.
+ 
+Alternativa incorreta
+Um README é apenas útil em repositórios privados, pois em projetos públicos todas as informações já estão disponíveis.
+ 
+Alternativa incorreta
+Um README permite que você descreva o propósito do projeto, além de outros detalhes relevantes.
+ 
+Um README é uma ferramenta essencial para fornecer informações sobre o projeto, incluindo seu propósito, como instalá-lo, suas principais características e como outras pessoas podem contribuir. Ele ajuda a tornar o projeto mais acessível e colaborativo.
+Alternativa incorreta
+Um README não tem benefícios significativos, sendo apenas uma prática comum sem utilidade real.
+
+@@10
+Faça como eu fiz: README do repositório
+ PRÓXIMA ATIVIDADE
+
+Agora é com você! Crie o README do seu repositório, da mesma forma que foi demonstrado na aula.
+
+Opinião do instrutor
+
+Você deve criar um arquivo chamado README.md no diretório raiz do seu projeto, sendo que nesse arquivo você deve escrever os detalhes do seu projeto, utilizando a formatação Markdown e/ou HTML. Fique à vontade para escrever os detalhes que achar mais importantes e relevantes do seu projeto.
+Você pode consultar exemplos e dicas nos artigos citados ao longo da aula:
+
+Formatação com Markdown
+Como escrever um README incrível no seu Github
+
+https://wordpress.com/support/markdown-quick-reference
+
+https://www.alura.com.br/artigos/escrever-bom-readme
+
+@@11
+Desafio: hora da prática
+ PRÓXIMA ATIVIDADE
+
+Hora do Desafio
+Ao realizar esta sequência de exercícios não obrigatórios, você não apenas aprimora suas habilidades técnicas no Git, mas também desenvolve uma compreensão profunda de como otimizar seus repositórios para uma colaboração eficaz. Prepare-se para um mundo onde a organização do seu código é tão essencial quanto a sua funcionalidade!
+
+Desafios
+Criar um README.md para documentação de seu projeto
+Crie um arquivo .txt com os logs de commits no seu projeto
+Ignore o arquivo de logs durante a sincronização do repositório local para o remoto
+Crie um README.md para o seu perfil do github
+Caso precise de ajuda, opções de solução das atividades estarão disponíveis na seção “Opinião da pessoa instrutora”.
+
+Opinião do instrutor
+
+Vamos explorar passo a passo como realizar desafios essenciais para melhorar a documentação e organização do seu projeto no GitHub.
+Desafio 1: Criar um README.md para Documentação do Projeto
+
+Na raiz do seu projeto, crie um arquivo chamado README.md. Você pode fazer isso manualmente ou usando um comando no terminal, dependendo do seu ambiente.
+Edite o README.md: Utilize o formato Markdown para estruturar e formatar seu README. Inclua informações como uma breve descrição do projeto, instruções de instalação, exemplos de uso, entre outras informações relevantes.
+Atualizar as alterações: Faça um commit das alterações no README.md e envie para o repositório remoto no GitHub.
+Desafio 2: Criar um Arquivo .txt com os Logs de Commits
+
+Execute o Comando git log para ver os registros de commits
+No terminal, execute: git log > logs.txt para criar um arquivo chamado logs.txt contendo os logs de commits
+Desafio 3: Ignorar o Arquivo de Logs Durante a Sincronização
+
+Criar um arquivo .gitignore:
+Se ainda não tiver, crie um arquivo chamado .gitignore na raiz do seu projeto.
+Adicionar a entrada para o Arquivo de Logs no .gitignore: Dentro do .gitignore, adicione uma linha com o nome do arquivo de logs (logs.txt). Isso garantirá que o Git ignore esse arquivo durante a sincronização.
+Commit e Push: Faça um commit das alterações no .gitignore e envie para o repositório remoto.
+Desafio 4: Criar um README.md para o seu Perfil do GitHub
+
+Este é um desafio diferente do anterior, pois é uma forma de criar uma apresentação para o seu perfil no Github, vamos realizá-lo?
+
+Você também pode seguir as orientações no artigo “Como criar um readme para seu perfil no github”
+
+No GitHub, crie um repositório com o mesmo nome do seu nome de usuário.
+Dentro desse repositório, crie um arquivo README.md para documentar quem você é, suas habilidades, projetos favoritos, ou qualquer outra informação que deseje compartilhar.
+Personalizar o README: Utilize Markdown para formatar e personalizar seu README. Adicione links, imagens e qualquer coisa que represente você da melhor forma.
+Salvar as alterações com Commit e Push: Faça um commit das alterações no README.md do seu perfil e envie para o repositório remoto.
+Ao concluir esses desafios, você terá melhorado a documentação do seu projeto e do seu perfil no GitHub, além de aprender a ignorar arquivos durante a sincronização. Essas práticas são fundamentais para tornar seus projetos mais acessíveis e seu perfil mais informativo. Continue explorando e aprimorando suas habilidades no GitHub!
+
+@@12
+O que aprendemos?
+ PRÓXIMA ATIVIDADE
+
+Nessa aula, você aprendeu como:
+Criar o arquivo README de um repositório, que funciona como uma documentação;
+Ensinar ao Git que determinados arquivos e/ou diretórios do projeto devem ser automaticamente ignorados do controle de versão, com a criação do arquivo oculto .gitignore;
+Compartilhar trechos de códigos com a ferramenta Gist do GitHub.
+
+@@13
+Conclusão
+
+Rodrigo: Parabéns por chegar ao final deste curso! Aprendemos muitas coisas relevantes e focamos no compartilhamento de códigos, usando Git e GitHub e no trabalho em equipe.
+Como pessoa desenvolvedora, com certeza você vai usar essas ferramentas em seu cotidiano, trabalhando com programação, seja em front-end, back-end ou mobile, elas serão muito úteis.
+
+Vamos relembrar o que estudamos!
+
+Iniciamos com nosso projeto, o jogo do número secreto, o qual importamos no Visual Studio Code, analisamos o código e nos deparamos com a questão: como compartilhar essa aplicação com outras pessoas?
+
+Descobrimos a existência da ferramenta GitHub, muito popular entre as pessoas que trabalham com programação. Aprendemos a criar uma conta no GitHub, estabelecer um repositório e enviar nosso projeto para ele.
+
+Gabrielle: Entendemos o fluxo de trabalho no GitHub, usando comandos como:
+
+git status;
+git add;
+git commit;
+git push;
+git pull.
+Rodrigo: Esses comandos são essenciais para o sincronismo das mudanças entre as várias pessoas do time.
+
+Em seguida, aprendemos a usar o Git diretamente no Visual Studio Code. Lembrando que nem todos os comandos estão disponíveis, por isso, eventualmente teremos que utilizar o terminal.
+
+Discutimos sobre a questão de conflitos: duas ou mais pessoas podem alterar o mesmo arquivo no projeto. Se essas alterações ocorrerem na mesma linha, quando uma delas for fazer o commit e tentar sincronizar, o Git vai sinalizar um conflito. Simulamos essa situação e mostramos como resolver conflitos com o Git.
+
+Gabrielle: Aprendemos a apagar um commit, revertê-lo e também a alterar sua mensagem ou conteúdo.
+
+Rodrigo: Estudamos outros recursos importantes, como o README. Criamos o README do nosso repositório e deixamos material complementar com algumas dicas.
+
+Além disso, entendemos como usar o arquivo .gitignore. Independentemente da tecnologia que você esteja utilizando, sempre vai precisar deste arquivo, pois existem diretórios e arquivos temporários que você não quer incluir no seu repositório do Git.
+
+Por fim, aprendemos a usar o Gist para compartilhar não um projeto ou repositório completo, mas apenas trechos de código.
+
+Gabrielle: Esperamos que você tenha aproveitado ao máximo e aprendido muito! Se tiver dúvidas, lembre-se de que você pode solicitar ajuda em nosso Fórum ou enviar mensagens em nosso Discord.
+
+Não se esqueça de deixar sua avaliação no curso e até breve!
+
+Rodrigo: Até o próximo curso!
+
+@@14
+Referências
+ PRÓXIMA ATIVIDADE
+
+1. Controlando versões com Git e GitHub
+Neste livro, Alexandre Aquiles e Rodrigo Ferreira mostrarão como utilizar o Git para controlar as versões do seu projeto. Serão ensinados comandos para criação de repositórios, trabalho local e remoto, branches, tags, conflitos, dentre outros assuntos. Além disso, será mostrado também como criar uma conta no GitHub e utilizá-la para hospedar seus repositórios
+2. Documentação git
+
+Documentação oficial do Git, onde você encontrará informações importantes sobre comandos e funcionamento da ferramenta.
+3. Documentação github Conventional Commits
+
+A especificação do Conventional Commits é uma convenção simples para utilizar nas mensagens de commit. Ela define um conjunto de regras para criar um histórico de commit explícito, o que facilita a criação de ferramentas automatizadas. Esta convenção segue o SemVer, descrevendo os recursos, correções e modificações que quebram a compatibilidade nas mensagens de commit.
+4.Ferramenta gerador de .gitignore
+
+Ferramenta para criar arquivos .gitignore úteis para o seu projeto.
+5. Ferramenta MarkDown Guide
+
+O Markdown Guide é um guia de referência gratuito e de código aberto que explica como usar o Markdown, a linguagem de marcação simples e fácil de usar que você pode usar para formatar praticamente qualquer documento.
+6. Markdown: como trabalhar com essa linguagem de markup?
+
+Você irá entender sobre o funcionamento do Markdown, que é um formato de marcação de texto e como fazer o uso adequado dessa ferramenta.
+7. Introducing Github O’Reilly
+
+Livro em Inglês para você, que é novo no GitHub. Este livro conciso mostra exatamente o que você precisa para começar e nada mais. É perfeito para gerentes de projetos e produtos e outros membros da equipe que desejam colaborar em um projeto de desenvolvimento, seja para revisar e comentar o trabalho em andamento ou para contribuir com mudanças específicas. Também é ótimo para desenvolvedores que estão aprendendo o GitHub.
+8. Learning Git O'Reilly
+
+Este livro,em Inglês, ensina Git de maneira simples, visual e tangível para que você possa construir um modelo mental sólido de como funciona o controle de versão do Git. Através do uso de cores, narrativas e exercícios práticos, você aprenderá a usar essa ferramenta com confiança.
+As informações são introduzidas de forma incremental para que você não fique atolado em termos ou conceitos desconhecidos. Aprender Git é ideal para quem precisa usar Git para projetos pessoais ou profissionais: estudantes de bootcamp de codificação, desenvolvedores juniores, profissionais de dados e escritores técnicos, para citar apenas alguns!
+
+https://www.casadocodigo.com.br/pages/sumario-git-github
+
+https://git-scm.com/book/pt-br/v2/Começando-O-Básico-do-Git
+
+https://www.conventionalcommits.org/pt-br/v1.0.0-beta.4
+
+https://www.toptal.com/developers/gitignore/
+
+https://www.markdownguide.org/
+
+https://www.alura.com.br/artigos/como-trabalhar-com-markdown?_gl=1*j8tztu*_ga*NzU2NTAyMDMyLjE2ODcxOTg5NTE.*_ga_1EPWSW3PCS*MTcwMTI4NjgzMy4yOTAuMS4xNzAxMjg5MzM1LjAuMC4w*_fplc*ZXM3TVQzbmI1bSUyQlhHeUZNY1h6VHFIdHZsc1BidGUwV1FWbFMzUm41VGxpSjk2dGl0M1o4OUVuUkdNMVJMN1p2MEtxWE1TV1ZsdFc0Y3A3cVdPYksxcWdUQllCb25CVDZpTGpIVENaakQ0QXlBRW5BbDQ1VTBkRU1NY00wUnclM0QlM0Q
+
+https://www.oreilly.com/library/view/introducing-github/9781491949801/
+
+https://www.oreilly.com/library/view/learning-git/9781098133900/?_gl=1*1k0j59z*_ga*MTc2ODczMTk1MS4xNjk4NDI5NjAw*_ga_092EL089CH*MTcwMTcxODU5OC4yLjEuMTcwMTcxODc3NS41My4wLjA.
+
+15
+Créditos
+ PRÓXIMA ATIVIDADE
+
+ Pessoas Instrutoras
+Gabrielle Ribeiro
+Rodrigo Ferreira Caneppele
+Produção didática
+
+Suellen Breda
+Apoio
+
+Arthur Fernandes
+Direção e produção audiovisual
+
+Emily Bissoli
+Vinicius Moraes
+Direção de fotografia
+
+Flávia Oliveira
+Direção de arte
+
+Lua Apolinário
+Coordenação de produção
+
+Amanda Sanches
+Pós-Produção
+
+Analu Tortella
+Sofia Soares Dias
+Isabella Lima
+Bruna Gonçalves
+Lívia Moura
+Patricia de Paula Gonçalves
+Rafael Bomfim
+Karina Gigliozzi
