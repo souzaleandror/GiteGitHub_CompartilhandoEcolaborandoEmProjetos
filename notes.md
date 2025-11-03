@@ -1765,3 +1765,336 @@ Entender como acontecem conflitos de códigos em commits que modificam um mesmo 
 O Git sinaliza no código um conflito, via marcações visuais;
 Resolver um conflito manualmente, editando o arquivo e realizando um commit que marca o conflito como resolvido.
 
+#03/11/2025
+
+@04-Voltando no tempo
+
+@@01
+Desfazendo um commit
+
+Transcrição
+
+Rodrigo: Bom, Gabi, já aprendemos vários recursos do GitHub e do Git. Contudo, até agora, focamos mais na parte de colaboração.
+Criei um repositório no meu usuário do Git, você fez o clone, te adicionei como colaboradora e começamos a trabalhar simulando rotinas de desenvolvimento de software. Você realizou mudanças no código, commits, assim como eu no meu computador, baixando os seus commits e enviando os commits para o GitHub.
+
+Cada commit representa uma versão do código, que fica registrada no histórico. Conhecemos o git-log e conseguimos conferir todo o histórico de versões. E, eventualmente, vamos querer voltar no tempo, pois alguém pode pedir para desfazer uma alteração. O Git também nos ajuda com esta situação, correto?
+
+Gabrielle: Sim, o Git pode nos ajudar nessas situações. Notei que você fez uma nova modificação no nosso projeto. Havia a imagem de uma menina ao fundo e você a removeu. Agora, vamos supor que queremos trazer essa imagem de volta, retornar para a versão em que tínhamos essa imagem no projeto. Como podemos fazer isso?
+
+Rodrigo: Neste caso, poderíamos entrar no site do GitHub, clicar na lista do log para ver os commits e encontrar qual foi o commit que fez essa alteração. Lembre-se de que é possível detalhar o que aquele commit fez no código e quais arquivos foram modificados.
+
+Neste nosso exemplo, seria simples encontrar as alterações, porque a mudança ocorreu apenas no index.html. Porém, e se o commit tivesse alterado 86 arquivos, por exemplo? Não seria nada produtivo ter que verificar arquivo por arquivo, ir ao VS Code e desfazer a alteração.
+
+Presumo que o Git tenha um comando para automatizar esse processo, certo, Gabi?
+
+Gabrielle: Isso mesmo. Vamos descobrir qual é esse comando?
+
+Vamos abrir o VS Code e, naquela ferramenta do GitHub que estávamos utilizando no próprio VS Code, para abrir o log, aquele histórico dos nossos commits. A ferramenta é a "Source Control", no terceiro botão do menu lateral esquerdo.
+
+Clicando nessa ferramenta, temos o menu de três pontos (botão "Views and More Actions"). Vamos clicar nele e verificar se temos a opção de log. Procurando nas opções, não vemos nenhuma que mostre nosso histórico de commits.
+
+Rodrigo: Verdade. Começamos a usar essa integração do Visual Studio Code com o Git, mas nem todos os comandos estão disponíveis via menu. Os mais comuns, como ver o status, qual arquivo foi modificado, fazer um commit, ADD, push, pull, são exibidos.
+
+Mas, se quisermos executar um log ou outros comandos mais avançados, e que não são tão comuns, o VS Code não mostra. Sendo assim, teremos que usar o terminal novamente.
+
+Gabrielle: Vamos abrir novamente o terminal, clicando em "Terminal > New Terminal" no menu superior. Vamos minimizar o menu lateral esquerdo para deixar apenas o terminal na tela.
+
+Agora, vamos rodar o comando git log, que já conhecemos. Como vimos anteriormente, esse comando traz algumas informações dos nossos commits. Cada commit possui um ID, o qual identifica esse commit de maneira única.
+
+Rodrigo: O ID único é a maneira pela qual o Git diferencia cada commit. É como se fosse um ID de registro no banco de dados. Precisamos saber qual é o commit que queremos desfazer e, para isso, usaremos esse ID.
+
+Gabrielle: O commit que queremos desfazer é o "removendo foto", então vamos copiar o ID dele (o código de letras e números ao lado de "commit").
+
+commit 2ad48c068dc9677fb57efec70620700410f976b0
+COPIAR CÓDIGO
+Em seguida, pressionamos a tecla "Q" para retornar ao nosso terminal. O comando para reverter um commit é o git revert, passando ao lado o ID do commit a ser desfeito.
+
+git revert 2ad48c068dc9677fb57efec70620700410f976b0
+COPIAR CÓDIGO
+Rodrigo: Executando o comando git revert, é aberta uma pequena janela no topo da tela. Isso acontece porque o git revert é o comando responsável por realizar o processo de identificar o commit pelo ID passado como parâmetro, analisar cada alteração feita por ele e desfazer essas alterações sozinho.
+
+Entretanto, o revert não desfaz as alterações modificando apenas os arquivos. Ele cria um novo commit para registrar esse revert.
+
+Gabrielle: Portanto, o revert já nos fornece uma mensagem para esse novo commit,dizendo que realizou um revert e traz a mensagem do commit original, por exemplo, além do ID desse commit.
+
+Revert "removendo foto"
+This reverts commit 2ad48c068dc9677fb57efec70620700410f976b0.
+
+Fechando esta janela, essa mensagem já ficará salva para o novo commit.
+
+Agora, vamos executar o comando git log no terminal para verificar o que aconteceu.
+
+Na lista de commits, foi retornado esse novo commit no topo da lista, indicando que ocorreu um revert do commit de "removendo foto".
+
+Rodrigo: Então, na verdade, o revert não apaga o commit original. O que ele faz é criar um novo commit que efetua uma espécie de "Ctrl + Z" no commit original. Todos os arquivos modificados pelo commit original têm suas alterações desfeitas, mas o revert fica registrado no histórico.
+
+No entanto, como é um novo commit, ele está apenas no nosso repositório local. Portanto, quisermos enviá-lo para o GitHub, será necessário sincronizar, rodando novamente o seguinte comando no terminal:
+
+git push origin main
+COPIAR CÓDIGO
+Com isso,sincronizamos e enviamos esse commit de revert para o repositório remoto, permitindo que outras pessoas possam baixá-lo.
+
+Será que essa alteração funcionou? Vamos verificar no site se a foto da pessoa foi restaurada
+
+Gabrielle: Abrindo o navegador, podemos notar que a imagem da menina já está no plano de fundo novamente. Portanto, deu certo!
+
+Rodrigo: Nós fizemos o revert, desfizemos a alteração de um determinado commit. O próprio git se encarregou de olhar cada arquivo, desfazer as respectivas alterações e registrar isso no histórico, revertendo o código para a versão anterior.
+
+Esta é uma situação comum. Eventualmente, as pessoas que usam o sistema podem solicitar uma alteração e, depois de uma semana ou um mês, elas podem mudar de ideia e dizer:
+
+— Olha, testamos a alteração que você fez naquele dia, e não era exatamente o que queríamos. Você pode reverter para o como estava antes?
+
+E nós não lembraremos de cabeça como era o código anterior. Portanto, graças a essa funcionalidade de registro por commits, nós conseguimos localizar este commit e fazer o revert, recuperando a versão do código daquele momento.
+
+Gabrielle: O histórico de comandos pode ser útil em outras situações. Por exemplo, vamos imaginar que em vez de querer reverter um commit, tenhamos feito algo no repositório local e queiramos excluir esse commit, removê-lo do histórico. É possível fazer isso?
+
+Rodrigo: Essa é uma situação diferente. Agora não queremos mais apenas desfazer um commit, mas de fato apagá-lo. É possível fazer isso, e aprenderemos a seguir.
+
+@@02
+Resetando um commit
+
+Transcrição
+
+Rodrigo: No último vídeo, aprendemos como desfazer um commit utilizando o comando git revert. Esse comando gera um novo commit com essa mudança, desfazendo todo o código que foi alterado naquele determinado commit.
+No entanto, existem situações em que não queremos, de fato, desfazer um commit. Na verdade, queremos apagar o commit do histórico.
+
+Por exemplo, nós podemos estar trabalhando em uma funcionalidade que no meio do caminho é cancelada, sendo que nós já tínhamos alterado os arquivos e feito um ou mais commits. Então, aqueles commits não fazem mais sentido no histórico e queremos apagá-los.
+
+Ou, em outra situação comum, você pode estar realizando uma tarefa e outra pessoa inicia a mesma tarefa sem avisar, termina, faz o commit e faz o push. Então, aquele commit que você havia feito também não faz mais sentido e nós queremos apagá-lo.
+
+Temos um comando para fazer isso?
+
+Gabrielle: Sim! Vamos conhecê-lo.
+
+Podemos abrir o nosso arquivo index.html e realizar uma mudança. Na linha 22, nós temos um título H1 "Adivinhe o número secreto":
+
+index.html
+<h1>Adivinhe o <span class="container__texto-azul">numero secreto</span></h1>
+COPIAR CÓDIGO
+Vamos apagar essa linha e realizar o commit da maneira que já sabemos: clicando em "Source Control > Stage Changes (ícone de adição)" para adicionar o index.html no commit. Depois, escrevemos uma mensagem de commit no campo de texto logo acima:
+
+Remove título
+Depois, clicamos no botão "Commit". Não vamos mandar essa alteração para o GitHub.
+
+E agora, como podemos fazer para reverter esse commit que acabamos de fazer?
+
+Rodrigo: Acabamos de simular a situação em que uma pessoa realizou uma mudança no código, apagando aquele título H1, e fez o commit. Só que ela não sincronizou a atualização e recebemos um pedido para cancelá-la, por exemplo. Mas o commit já está registrado no repositório local dessa pessoa.
+
+Então, podemos rodar um log para visualizar esse commit no histórico, mas terá que ser pelo terminal. Na sequência, aprenderemos a apagar esse commit.
+
+Gabrielle: Vamos fechar a aba do Source Control, abrir um novo terminal e rodar o comando git log.
+
+Rodrigo: Da mesma forma que o revert, se queremos apagar um commit, vamos precisar do ID do commit em questão para identificá-lo.
+
+Gabrielle: Então, vamos copiar o ID do commit "Remove título" que acabamos de fazer:
+
+a3322db2eb6f82162977169f5461fc93b81bfac1
+COPIAR CÓDIGO
+Em seguida, limpamos nosso terminal. O comando para apagar um commit é o git reset --hard junto do ID do commit.
+
+git reset --hard a3322db2eb6f82162977169f5461fc93b81bfac1
+COPIAR CÓDIGO
+Rodrigo: Um detalhe importante: o parâmetro --hard foi colocado porque o comando reset possui algumas opções, alguns modos de realizar esse reset. O parâmetro --hard serve para apagar o commit e também avisei apagar a mudança no código.
+
+No Para Saber Mais desta aula, explicamos outras possibilidades de uso do comando reset.
+Gabrielle: Será que funcionou? Vamos rodar o git log no terminal para verificar.
+
+Estranhamente, o commit que tentamos apagar, "Remove título", ainda está presente no histórico. Parece que não funcionou.
+
+Rodrigo: Tem uma pegadinha aí. Na verdade, com o comando reset utilizando a opção --hard, temos que passar o ID do commit, mas não é o ID do commit que queremos resetar, mas sim o ID do comando anterior.
+
+Acabamos copiando o ID do commit "Remove título", mas temos que passar o ID da versão a que queremos retornar. Ou seja, esse comando retorna ao estado do commit indicado pelo ID. Então, seria o ID do commit anterior, "Revert 'remove foto'".
+
+Vamos copiar o ID correto dessa vez e limpar o terminal. Vamos digitar novamente o comando git reset --hard com o ID do commit "Revert 'remove foto'".
+
+git reset --hard 7f69ff8220e093d2c8ad234ceec109a6e794e5f61
+COPIAR CÓDIGO
+Ao dar "Enter", uma mensagem aparece indicando que nosso HEAD agora está no início do ID, que identifica nosso commit.
+
+Vamos rodar novamente o git log. Agora parece que funcionou.
+
+Rodrigo: Aquele último commit, "Remove título", sumiu. Mas será que ele desfez as mudanças no código? Vamos ver se voltou aquele H1 que apagamos.
+
+Gabrielle: Vamos fechar o terminal e expandir o index.html. E pronto, retornou: na linha 22 temos o nosso H1. Deu certo!
+
+Rodrigo: Além do comando revert, que nos permite reverter uma mudança mantendo o commit e criando um novo, temos o comando reset para quando queremos apagar um determinado commit, excluí-lo do histórico porque ele não faz mais sentido.
+
+Nos últimos dois vídeos, nós apresentamos essas duas situações: em uma delas estamos revertendo um commit, na outra estamos apagando um commit. Mas há uma terceira situação possível.
+
+Imagine que não queremos nem apagar nem desfazer, mas alterar um commit. Por exemplo: mudar a mensagem do commit ou incluir um arquivo que esquecemos de adicionar no momento do commit. O Git também nos ajuda com isso.
+
+Gabrielle: Mas antes de falar um pouco mais sobre isso, é importante lembrarmos que o comando reset que acabamos de usar deve ser usado apenas quando tivermos feito esse commit de alteração no nosso repositório local.
+
+Caso já tenhamos subido esse commit, não é tão interessante usar esse comando e alterar o histórico de versões que já está público.
+
+Rodrigo: Essa é mais uma vantagem do Git: nós fazemos os commits e eles só existem localmente até o momento que sincronizamos e enviamos para o GitHub.
+
+No entanto, enquanto o commit está apenas local, as outras pessoas não têm esse commit. Portanto, podemos apagar, desfazer, fazer mudanças. Mas, se já enviamos para o GitHub, não é recomendado apagar um commit, porque isso poderia causar confusão.
+
+Gabrielle: Agora podemos continuar e aprender como realizar uma alteração na mensagem ou algum detalhe de um commit. Vamos lá?!
+
+@@03
+Para saber mais: mais opções do comando git reset
+
+Aprendemos como utilizar o comando git reset com a opção --hard, que define o modo como o reset será realizado. Entretanto, essa não é a única forma de uso desse comando.
+Você pode encontrar as outras opções do comando git reset na documentação oficial do git.
+
+https://git-scm.com/docs/git-reset/pt_BR
+
+@@04
+Alterando o último commit
+
+Transcrição
+
+Rodrigo: Já aprendemos alguns comandos para alterar o histórico, reverter um commit e apagar um commit. No entanto, temos também a terceira situação, onde nós queremos apenas alterar um commit.
+Já fizemos a simulação de um novo commit. Vamos rodar um git log no terminal para verificar o que aconteceu.
+
+Lá está o nosso último commit: "Trocando texto do botão avidinhar". Vamos simular essa situação.
+
+A Gabi editou o texto do botão, mudando "chutar" para "adivinhar" e fez o commit. Mas ao digitar a mensagem do commit, houve um pequeno erro. Em vez de "adivinhar", ficou "avidinhar".
+
+Essa é uma situação em que se pensa: Já fiz o commit, e agora? Preciso alterar essa mensagem! Será que vou ter que apagar esse commit e fazer um totalmente novo?
+
+É possível alterar o commit, Gabi?
+
+Gabrielle: Sim! Vamos limpar o terminal primeiro. Podemos fazer isso por meio do comando git commit --amend -m, seguido pela minha mensagem correta, que seria "Trocando botão para adivinhar".
+
+git commit --amend -m "Trocando botao para adivinhar"
+COPIAR CÓDIGO
+Rodrigo: É o próprio comando git commit, como se estivéssemos fazendo um novo commit. Mas não é um novo commit por causa do parâmetro --amend.
+
+Ele indica ao Git que não queremos fazer um novo commit, mas alterar o anterior. Então é só passar o -m, com o texto da mensagem correta.
+
+Gabrielle: Vamos ver se vai dar certo. Após executar o comando acima, temos o retorno de sucesso. Parece que deu certo.
+
+Vamos executar o git log para confirmar se ele realmente alterou o commit anterior em vez de criar um novo commit.
+
+Parece que deu certo! O último commit da lista tem a mensagem "Trocando botao para adivinhar".
+
+Rodrigo: Essa é uma situação comum. Eventualmente digitamos com pressa e acabamos errando a mensagem. Mas não queremos deixar aquela mensagem feia e errada.
+
+Ou a situação pode ter sido a seguinte: você editou seis arquivos, por exemplo, e quando foi fazer o commit, você adicionou cinco e deixou um para trás. E então você fez o commit.
+
+Também é possível fazer esse comando -- amend. Nesse caso você não iria alterar a mensagem, mas precisaria apenas adicionar o arquivo e fazer o commit com o amend.
+
+São situações comuns que, de vez em quando, nos deparamos.
+
+Com isso, aprendemos nessa aula alguns comandos para voltar no tempo, modificar o histórico de versão. Seja para desfazer, apagar ou mesmo alterar um commit.
+
+Na sequência, vamos aprender outros conceitos e recursos dentro do GitHub.
+
+@@05
+Para saber mais: cuidados ao mudar o histórico
+
+Nessa aula, exploramos como é possível alterar o histórico de commits no Git, mas é fundamental exercer cautela ao realizar tais mudanças. Como diz o ditado, "com grandes poderes vêm grandes responsabilidades".
+É importante destacar que os comandos do Git que permitem modificar o histórico de commits devem ser utilizados com prudência e apenas quando o commit em questão ainda não foi enviado ao repositório remoto, ou seja, quando ele existe apenas no seu repositório local.
+
+Modificar um commit que já se tornou público, ou seja, aquele que já foi enviado ao GitHub ou a qualquer outro repositório remoto, pode acarretar problemas consideráveis na colaboração com as outras pessoas e na integridade do histórico de um projeto.
+
+Em situações de colaboração em equipe, é essencial manter a integridade do histórico de commits, pois qualquer modificação em um commit que outras pessoas estejam trabalhando pode resultar em conflitos e dificuldades na colaboração.
+
+É recomendável evitar a modificação excessiva do histórico de commits, uma vez que isso pode tornar o histórico confuso. O histórico deve ser uma representação precisa do progresso do projeto ao longo do tempo.
+
+@@06
+Removendo um commit do histórico
+
+Você está trabalhando em um projeto de desenvolvimento de software chamado "TechCode". Observou-se que o histórico de commits do repositório possui um commit indesejado que precisa ser removido.
+Qual o comando correto para realizar essa tarefa?
+
+git reset --hard <id_do_commit_anterior>
+ 
+O comando git reset permite redefinir a posição da branch atual para um commit anterior, removendo os commits posteriores do histórico.
+Alternativa incorreta
+git remove-commit <id_do_commit>
+ 
+Alternativa incorreta
+git revert <id_do_commit>
+ 
+Alternativa incorreta
+git commit --amend
+ 
+Parabéns, você acertou!
+Este conteúdo foi útil para o seu aprendizado?
+Ícone de polegar para cima indicando que o conteúdo foi útil para seu aprendizado
+Sim
+Ícone de polegar para baixo indicando que o conteúdo não foi útil para seu aprendizado
+Não muito
+
+@@07
+Faça como eu fiz: modificações no último commit
+
+Agora é com você! Altere a mensagem do seu último commit, como foi demonstrado no vídeo anterior.
+
+Opinião do instrutor
+
+Antes de modificar o último commit, vamos usar o comando a seguir para visualizar informações a respeito desse commit:
+git log
+COPIAR CÓDIGO
+Para alterar informações do último commit, como o texto da mensagem, use o comando a seguir:
+
+git commit --amend -m “NOVA MENSAGEM”
+COPIAR CÓDIGO
+Não esqueça de substituir o NOVA MENSAGEM por um texto descritivo para aquele commit.
+Para verificar se a mensagem foi alterada, use novamente o comando a seguir:
+
+git log
+
+@@08
+Desafios: hora da prática
+
+Domine o Controle de Versão com estes desafios práticos! De visualizar e modificar commits a sincronizar com repositórios remotos, estes exercícios não obrigatórios proporcionarão uma experiência prática para fortalecer sua compreensão do Git.
+A prática constante é a chave para se tornar um mestre no Git!
+
+Desafios
+Acesse todos os commits realizados
+Modifique o último commit
+Reverta mudanças no repositório local
+Apague um ou mais commits
+Sincronize as modificações com o repositório remoto
+Analise as mensagens de commits realizados e faça as alterações de acordo com as boas práticas
+Caso precise de ajuda, opções de solução das atividades estarão disponíveis na seção “Opinião da pessoa instrutora”.
+
+Opinião do instrutor
+
+Desafio 1: Veja todos os commits realizados
+Para visualizar todos os commits realizados em um repositório Git, você pode usar o comando git log. Este comando exibe o histórico de commits, mostrando informações como o hash do commit, autor, data, e mensagem do commit. Aqui estão algumas variações do comando git log que podem ser úteis:
+
+Para exibir o histórico completo: git log
+Exibir Alterações Detalhadas: git log -p
+Exibir Apenas Mensagens de Commit: git log --oneline
+Desafio 2: Modificar o Último Commit com git commit --amend:
+
+Faça um commit com algumas alterações no seu código.
+Perceba que esqueceu de incluir algumas modificações.
+Para adicionar as modificações esquecidas ao último commit, sem criar um novo commit, utilize o comando: git commit --amend
+Desafio 3: Reverter Mudanças de um Commit com Git Revert:
+
+Crie um novo arquivo no seu repositório.
+Realize um commit adicionando esse novo arquivo.
+Para reverter automaticamente as mudanças feitas no último commit sem excluir o histórico: git revert <hash-do-commit>
+Se você precisar reverter uma série de commits, pode utilizar o seguinte comando: git revert -n <hash-do-ultimo-commit-a-manter>
+Lembre-se que após reverter, é necessário realizar um novo commit para aplicar a reversão ao repositório
+Lembre-se de que o git revert é uma maneira segura e não destrutiva de desfazer alterações, pois não reescreve o histórico existente. Ele é particularmente útil em ambientes de trabalho compartilhados, onde reescrever o histórico pode causar problemas para outros colaboradores.
+Desafio 4: Apagar um Commit com Git Reset:
+
+Faça uma série de commits com alterações no seu código.
+Escolha um commit específico que deseja excluir.
+Use para apagar o commit selecionado, desfazendo automaticamente as mudanças no código: git reset --hard <hash-do-ultimo-commit-a-manter>
+Se você apenas deseja desfazer commits, mas manter as alterações no diretório de trabalho, você pode usar git reset --soft.
+Observação: No cotidiano de trabalho em desenvolvimento, a escolha entre reset e revert deve ser tomada com base nas necessidades específicas do seu projeto e na colaboração com as outras pessoas desenvolvedoras. Se você deseja desfazer alterações em um commit específico sem reescrever o histórico, git revert é uma escolha mais segura. Se você precisa reverter completamente para um estado anterior, git reset pode ser apropriado, mas use-o com cautela, especialmente em branches compartilhadas.
+Desafio 5: Sincronize as modificações com o repositório remoto
+
+Execute o comando: git push
+Desafio 6: Analise as mensagens de commits realizados e faça as alterações de acordo com as boas práticas:
+
+Para visualizar todo o histórico de commits, execute o comando: git log
+Leia a documentação da Conventional Commits para elaborar as mensagens de commits de acordo com as boas práticas
+Reescreva os commits utilizando os comandos já aprendidos: git commit –amendou git revert.
+
+@@09
+O que aprendemos?
+
+Nessa aula, você aprendeu como:
+Reverter mudanças de um commit de maneira automática, utilizando o comando git revert;
+Apagar um determinado commit do histórico, desfazendo automaticamente suas mudanças no código, utilizando o comando git reset;
+Modificar o último commit efetuado, alterando sua mensagem ou modificações no código, utilizando o comando git commit com o parâmetro --amend.
